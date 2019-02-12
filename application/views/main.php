@@ -8,7 +8,8 @@
 					<ul class = "list-group">
 						<button type = "button" class = "list-group-item active">Группа товаров</button>
 <?php
-			foreach($group_product as $item){
+			foreach($group_product as $item)
+			{
 				echo '<button type = "submit" class = "list-group-item list-group-item-action" value = "'.$item['id_group'].'" name = "id_group">'.$item['name_group'].'</button>';
 			}
 ?>					
