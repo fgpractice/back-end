@@ -58,7 +58,7 @@
 				echo '		<td>'.$item['price'].'</td>';
 				echo '		<td>'.$item['id_product'].'</td>';
 				echo '		<td>'.$item['supplier'].'</td>';
-				echo '	</tr>
+				echo '</tr>';
 			}			
 	?>
 				</tbody>

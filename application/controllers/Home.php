@@ -138,7 +138,7 @@ class Home extends CI_Controller {
 		
 		$this->load->view('head');
 		$this->load->view('navbar_input');
-		$this->load->view('order',$data);
+		$this->load->view('order'/*,$data*/);
 		$this->load->view('footer');
 	}
 }

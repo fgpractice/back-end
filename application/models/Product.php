@@ -15,7 +15,7 @@ class Product extends CI_Model {
 		if($id_group != 0){
 			$sql.= ' and id_group ='.$id_group;
 		}
-		if($name_product != ' '){
+		if (!empty($name_product)) {
 			$sql.= " and name_product LIKE '%".$name_product."%'";
 		}
 		$query = $this->db->query($sql);

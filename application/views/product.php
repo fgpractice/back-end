@@ -56,7 +56,7 @@
 				echo '		<td>'.$item['measure_unit'].'</td>';
 				echo '		<td>'.$item['photo'].'</td>';
 				echo '		<td>'.$item['id_group'].'</td>';
-				echo '	</tr>
+				echo '</tr>';
 			}			
 	?>
 				</tbody>
