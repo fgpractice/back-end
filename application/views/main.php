@@ -32,7 +32,7 @@
 			foreach($product as $item){
 				echo '<div class = "col-3">';
 				echo '	<div class = "card">';
-				echo '		<img src = "images/'.$item['photo'].'" style = "height:150px;">';
+				echo '		<img src = "assets/images/'.$item['photo'].'" style = "height:150px;">';
 				echo '		<div class = "card-body">';
 				echo '			<h5>'.$item['name_product'].'</h5>';
 				echo '			<p><b>Описание товара:</b></p>';
