@@ -35,5 +35,31 @@
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
 			</div>
 		</div>
+		<table class="table">
+				<thead class = "thead-dark">
+					<tr>
+						<th col = "">№</th>
+						<th col = "">Наименование</th>
+						<th col = "">Описание</th>
+						<th col = "">Ед. измерения</th>
+						<th col = "">Фото</th>
+						<th col = "">№ группы товара</th>
+					</tr>
+				</thead>
+				<tbody>
+	<?php
+			foreach ($product as $item){
+				echo '<tr>';
+				echo '		<td>'.$item['id_product'].'</td>';
+				echo '		<td>'.$item['name_product'].'</td>';
+				echo '		<td>'.$item['description'].'</td>';
+				echo '		<td>'.$item['measure_unit'].'</td>';
+				echo '		<td>'.$item['photo'].'</td>';
+				echo '		<td>'.$item['id_group'].'</td>';
+				echo '	</tr>
+			}			
+	?>
+				</tbody>
+			</table>
 	</form>
 </div>

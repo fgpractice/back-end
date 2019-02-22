@@ -10,7 +10,7 @@
 <?php
 			foreach($group_product as $item)
 			{
-				echo '<button type = "submit" class = "list-group-item list-group-item-action" value = "'.$item['id_group'].'" name = "id_group">'.$item['name_group'].'</button>';
+				echo '<button type = "submit" name = "action" class = "list-group-item list-group-item-action" value = "'.$item['id_group'].'" name = "id_group">'.$item['name_group'].'</button>';
 			}
 ?>					
 					</ul>

@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> 'pgsql: host = localhost; dbname = orders',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
-	'password' => 'postgres',
+	'password' => 'frigatepsql',
 	'database' => 'orders',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

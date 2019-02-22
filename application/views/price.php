@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-	<form method = "post" action = "">
+	<form method = "post" action = "price">
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Товар</label>
@@ -23,5 +23,27 @@
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
 			</div>
 		</div>
+		<table class="table">
+				<thead class = "thead-dark">
+					<tr>
+						<th col = "">№</th>
+						<th col = "">Цена</th>
+						<th col = "">№ товара</th>
+						<th col = "">Поставщик</th>
+					</tr>
+				</thead>
+				<tbody>
+	<?php
+			foreach ($price as $item){
+				echo '<tr>';
+				echo '		<td>'.$item['id_price'].'</td>';
+				echo '		<td>'.$item['price'].'</td>';
+				echo '		<td>'.$item['id_product'].'</td>';
+				echo '		<td>'.$item['supplier'].'</td>';
+				echo '	</tr>
+			}			
+	?>
+				</tbody>
+			</table>
 	</form>
 </div>
