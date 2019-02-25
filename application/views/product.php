@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-	<form method = "post" action = "">
+	<form method = "post" action = "product">
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Группа товара</label>

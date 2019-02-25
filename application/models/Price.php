@@ -5,8 +5,7 @@ class Price extends CI_Model {
 
 	public function select_price()
 	{
-		$sql = 'SELECT id_price, price, id_product, supplier FROM price_list';
-		$query = $this->db->query($sql);
+		$query = $this->db->get('price_list');
 		return $query->result_array();
 	}
 	public function select_price_product($id_product)
@@ -17,8 +16,8 @@ class Price extends CI_Model {
 	}
 	public function insert_price($price, $id_product, $supplier)
 	{
-		$sql = 'INSERT INTO price_list (price, id_product, supplier) VALUES (?,?,?)';
-		$query = $this->db->query($sql, array($price, $id_product, $supplier));
+		$sql = 'INSERT INTO price_list (price, id_product, supplier) VALUES ('.$this->db->escape($price).','.$this->db->escape($id_product).','.$this->db->escape($supplier).')';
+		$query = $this->db->query($sql);
 		return $this->db->insert_id();
 	}
 }

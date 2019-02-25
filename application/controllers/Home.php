@@ -54,16 +54,26 @@ class Home extends CI_Controller {
 		}			
 		$this->load->view('footer');
 	}
-	public function main(){
-		
-		//осмотр главной страницы
-		//$this->load->view('main',$data);
-		//осмотр добавления продукта
-		//$this->load->view('product',$data);
-		//осмотр добавления прайса
-		//$this->load->view('price',$data);
-		//осмотр добавления торговой точки
-		//$this->load->view('trading',$data);
+	public function registration(){
+		//загрузка модели
+		$this->load->model('users');
+		if(!empty($_POST))
+		{
+			//добавление входных значений
+			$login = $this->input->post('login');
+			$password = $this->input->post('password');
+			$email = $this->input->post('email');
+			$phone = $this->input->post('phone');
+			$device = $this->input->post('device');
+			$first_name = $this->input->post('first_name');
+			
+			//добавление пользователя
+			$data['users'] = $this->users->insert_user($login, $password, $email, $phone, $device, $first_name);
+		}
+		$this->load->view('head');
+		$this->load->view('navbar_input');
+		$this->load->view('registration', $data);
+		$this->load->view('footer');
 	}
 	//функция выхода
 	public function out(){
@@ -123,13 +133,20 @@ class Home extends CI_Controller {
 	{
 		//отображение данных в таблице
 		$this->load->model('product');
-		$data['product'] = $this->product->select_product();
+		$data['product'] = $this->product->select_products();
 		//отображение группы товара в выпадающем списке
 		$this->load->model('group_product');
 		$data['group_product'] = $this->group_product->select_group_products();
 		//добавление продукта
 		if(!empty($_POST)){
-			$data['product'] = $this->product->insert_product($_POST['name_product'], $_POST['description'], $_POST['measure_unit'], $_POST['photo'], $_POST['id_group']);
+			//добавление переменной
+			$name_product = $this->input->post('name_product');
+			$description = $this->input->post('description');
+			$measure_unit = $this->input->post('measure_unit');
+			$photo = $this->input->post('photo');
+			$id_group = $this->input->post('id_group');
+			//добавление записи
+			$data['product'] = $this->product->insert_product($name_product, $description, $measure_unit, $photo, $id_group);
 		}
 		$this->load->view('head');
 		$this->load->view('navbar_input');
@@ -138,8 +155,7 @@ class Home extends CI_Controller {
 	}
 	//заказ
 	public function order()
-	{
-		
+	{	
 		$this->load->view('head');
 		$this->load->view('navbar_input');
 		$this->load->view('order'/*,$data*/);
