@@ -35,7 +35,7 @@
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table" id="table">
 				<thead class = "thead-dark">
 					<tr>
 						<th col = "">№</th>
