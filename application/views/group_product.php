@@ -5,8 +5,12 @@
                     <label>Наименование группы товара</label>
                     <input type = "text" name = "name_group" class = "form-control">
                 </div>
+                <div class = "form-group col-1 align-self-end">
+					<button type = "submit" class = "btn btn-primary">Добавить</button>
+				</div>
             </div>
-            <table class="table">
+            
+            <table class="table" id="table">
                 <thead class = "thead-dark">
                     <tr>
                         <th col = "">№</th>

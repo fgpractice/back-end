@@ -5,7 +5,7 @@
 			<button type = "button" class = "btn btn-link" data-toggle = "modal" data-target = "#exampleModal">Торговая точка</button>
         </div>
         <div class = "col-8">
-            <a href = "" class = "btn btn-outline-primary">Регистрация</a>
+            <a href = "<?=base_url()?>home/registration" class = "btn btn-outline-primary">Регистрация</a>
             <div class = "btn-group" role = "group">
                 <button id = "btnGroupDrop1" class = "btn btn-outline-primary dropdown-toggle" type = "button" data-toggle = "dropdown">Ввод</button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">   
