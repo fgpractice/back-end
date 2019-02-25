@@ -92,7 +92,11 @@ class Home extends CI_Controller {
 		$data['group_product'] = $this->group_product->select_group_products();
 		//добавление группы товара
 		if(!empty($_POST)){
-			$data['group_product'] = $this->group_product->insert_group_product($_POST['name_product']);
+			//добавление переменной ввода названия группы
+			$name_group = $this->input->post('name_group');
+			//выполнить добавление
+			$data['group_product'] = $this->group_product->insert_group_product($name_group);
+			redirect('home/group_product');
 		}
 		$this->load->view('head');
 		$this->load->view('navbar_input');
