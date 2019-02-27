@@ -1,25 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Group_products extends CI_Controller {
+class Categorys extends CI_Controller {
 
 	//группа товара
-	public function group_product()
+	public function category()
 	{
 		//отображение данных в таблице
-		$this->load->model('group_product');
-		$data['group_product'] = $this->group_product->select_group_products();
+		$this->load->model('category');
+		$data['category'] = $this->category->select_category();
 		//добавление группы товара
 		if(!empty($_POST)){
 			//добавление переменной ввода названия группы
 			$name_category = $this->input->post('name_category');
 			//выполнить добавление
-			$data['group_product'] = $this->group_product->insert_group_product($name_category);
-			redirect('group_products/group_product');
+			$data['category'] = $this->category->insert_category($name_category);
+			redirect('categorys/category');
 		}
 		$this->load->view('head');
 		$this->load->view('navbar_input');
-		$this->load->view('group_product',$data);
+		$this->load->view('category',$data);
 		$this->load->view('footer');
 	}
 }

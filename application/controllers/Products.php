@@ -10,8 +10,8 @@ class Products extends CI_Controller {
 		$this->load->model('product');
 		$data['product'] = $this->product->select_products();
 		//отображение группы товара в выпадающем списке
-		$this->load->model('group_product');
-		$data['group_product'] = $this->group_product->select_group_products();
+		$this->load->model('category');
+		$data['category'] = $this->category->select_category();
 		//добавление продукта
 		if(!empty($_POST)){
 			//добавление переменной

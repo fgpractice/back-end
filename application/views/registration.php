@@ -44,7 +44,7 @@
 				</thead>
 				<tbody>
 	<?php
-			foreach ($users as $item){
+			foreach ($user as $item){
 				echo '<tr>';
                 echo '		<td>'.$item['id'].'</td>';
                 echo '		<td>'.$item['login'].'</td>';

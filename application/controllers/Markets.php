@@ -1,31 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tradings extends CI_Controller {
+class Markets extends CI_Controller {
 
 	//торговая точка
-	public function trading(){
+	public function market(){
 		//отображение данных в таблице
-		$this->load->model('trading');
-		$data['trading'] = $this->trading->select_tradings();
+		$this->load->model('market');
+		$data['market'] = $this->market->select_markets();
 		//добавление торговой точки
 		if(!empty($_POST)){
 			//добавление переменных
-			$type_trading = $this->input->post('type_trading');
-			$name_trading = $this->input->post('name_trading');
+			$type_market = $this->input->post('type_market');
+			$name_market = $this->input->post('name_market');
 			$name_owner = $this->input->post('name_owner');
 			$contact = $this->input->post('contact');
-			$address_trading = $this->input->post('address_trading');
-			$bank_account = $this->input->post('bank_account');
+			$address_market = $this->input->post('address_market');
+			$bank_info = $this->input->post('bank_info');
 			//получение id из сессии
 			$user_id = $this->session->userdata('id_user');
 			//добавление записи
-			$data['trading'] = $this->trading->insert_trading($type_trading, $name_trading, $name_owner, $contact, $address_trading, $bank_account, $user_id);
-			redirect('tradings/trading');
+			$data['market'] = $this->market->insert_market($type_market, $name_market, $name_owner, $contact, $address_market, $bank_info, $user_id);
+			redirect('markets/market');
 		}	
 		$this->load->view('head');
 		$this->load->view('navbar_input');
-		$this->load->view('trading',$data);
+		$this->load->view('market',$data);
 		$this->load->view('footer');
 	}
 }

@@ -6,11 +6,11 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		//отображение группы товаров
-		$this->load->model('group_product');
-		$data['group_product'] = $this->group_product->select_group_products();
+		$this->load->model('category');
+		$data['category'] = $this->category->select_category();
 		//отображение торговых точек
-		$this->load->model('trading');
-		$data['trading'] = $this->trading->select_tradings();
+		$this->load->model('market');
+		$data['market'] = $this->market->select_markets();
 		//отображение всех товаров
 		$this->load->model('product');
 		//поиск товара
@@ -25,13 +25,13 @@ class Home extends CI_Controller {
 			}	
 		}
 		$data['product'] = $this->product->select_product($id_group, $name_product);
-		$this->load->model('users');
+		$this->load->model('user');
 		if(!empty($_POST)){
 			//добавление переменных
 			$login = $this->input->post('login');
 			$password = $this->input->post('password');
 			//проверка логина и пароля		
-			$data['user'] = $this->users->select_user($login, $password);
+			$data['user'] = $this->user->select_user($login, $password);
 			if(empty($data['user'])){
 				$data['message'] = 'Вы ввели неверный логин или пароль!';
 			}

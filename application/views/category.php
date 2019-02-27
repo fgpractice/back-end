@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-        <form method = "post" action = "group_product">
+        <form method = "post" action = "category">
             <div class = "form-row">
                 <div class = "form-group col-4">
                     <label>Наименование группы товара</label>
@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
     <?php
-            foreach ($group_product as $item){
+            foreach ($category as $item){
                 echo '<tr>';
                 echo '		<td>'.$item['id'].'</td>';
                 echo '		<td>'.$item['name_category'].'</td>';
