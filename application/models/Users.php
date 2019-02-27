@@ -15,14 +15,18 @@ class Users extends CI_Model {
 	}
 	public function select_users()
 	{
-		$sql = 'SELECT id_user, login, password, first_name, email, phone, device, role FROM users';
-		$query = $this->db->query($sql);
+		$query = $this->db->get('users');
 		return $query->result_array();
 	}
 	public function select_user($login, $password)
 	{
-		$sql = 'SELECT id_user, login, password, first_name, email, phone, device, role FROM users WHERE login =? and password = ?';
-		$query = $this->db->query($sql, array($login, $password));
+
+		//$sql = 'SELECT * FROM users WHERE login =? and password = ?';
+		$login = $this->db->escape('login');
+		$password = $this->db->escape('password');
+		$query = $this->db->get('users');
+		$this->db->where('login', $login);
+		$this->db->where('password', $password);
 		return $query->row_array();
 	}
 }

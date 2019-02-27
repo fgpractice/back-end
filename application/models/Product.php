@@ -14,7 +14,7 @@ class Product extends CI_Model {
 	public function select_product($id_group, $name_product)
 	{
 		//$query = $this->db->get('product');
-		$sql = 'SELECT id_product, name_product, description, measure_unit, photo, id_group FROM product';
+		//$sql = 'SELECT id_product, name_product, description, measure_unit, photo, id_group FROM product';
 		//if($id_group != 0){
 			//$this->db->where('id_group',$id_group);
 			//$sql.= ' and id_group ='.$id_group;
@@ -26,7 +26,7 @@ class Product extends CI_Model {
     		//	$this->db->escape_like_str($search)."%' ESCAPE '!'";
 			//$sql.= " and name_product LIKE '%".$name_product."%'";
 		//}
-		$query = $this->db->query($sql);
+		$query = $this->db->get('product');
 		return $query->result_array();
 	}
 	public function select_products()

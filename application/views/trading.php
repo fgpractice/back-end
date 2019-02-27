@@ -16,7 +16,7 @@
 			</div>		
 			<div class = "form-group col-3">
 				<label>ФИО директора</label>
-				<input type = "text" name = "fio" class = "form-control">
+				<input type = "text" name = "name_owner" class = "form-control">
 			</div>
 			<div class = "form-group col-2">
 				<label>Контактные данные</label>
@@ -44,6 +44,7 @@
 					<th col = "">Контакты</th>
 					<th col = "">Адрес</th>
 					<th col = "">Банковский реквизит</th>
+					<th col = "">№ пользователя</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,10 +54,11 @@
 			echo '		<td>'.$item['id_trading'].'</td>';
 			echo '		<td>'.$item['type_trading'].'</td>';
 			echo '		<td>'.$item['name_trading'].'</td>';
-			echo '		<td>'.$item['fio'].'</td>';
+			echo '		<td>'.$item['name_owner'].'</td>';
 			echo '		<td>'.$item['contact'].'</td>';
 			echo '		<td>'.$item['address_trading'].'</td>';
 			echo '		<td>'.$item['bank_account'].'</td>';
+			echo '		<td>'.$item['user_id'].'</td>';
 			echo '	</tr>';
 		}			
 ?>

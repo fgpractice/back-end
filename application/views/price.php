@@ -38,7 +38,7 @@
 				echo '<tr>';
 				echo '		<td>'.$item['id_price'].'</td>';
 				echo '		<td>'.$item['price'].'</td>';
-				echo '		<td>'.$item['id_product'].'</td>';
+				echo '		<td>'.$item['product_id'].'</td>';
 				echo '		<td>'.$item['supplier'].'</td>';
 				echo '</tr>';
 			}			
