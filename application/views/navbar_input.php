@@ -9,7 +9,7 @@
             <div class = "btn-group" role = "group">
                 <button id = "btnGroupDrop1" class = "btn btn-outline-primary dropdown-toggle" type = "button" data-toggle = "dropdown">Ввод</button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">   
-                <a class="dropdown-item" href="<?=base_url()?>home/trading">Торговой точки</a>';
+                <a class="dropdown-item" href="<?=base_url()?>home/trading">Торговой точки</a>
 
                     <a class="dropdown-item" href="<?=base_url()?>home/group_product">Группы товара</a>
                     <a class="dropdown-item" href="<?=base_url()?>home/price">Прайса</a>

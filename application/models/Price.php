@@ -16,7 +16,8 @@ class Price extends CI_Model {
 	}
 	public function insert_price($price, $id_product, $supplier)
 	{
-		$sql = 'INSERT INTO price_list (price, id_product, supplier) VALUES ('.$this->db->escape($price).','.$this->db->escape($id_product).','.$this->db->escape($supplier).')';
+		$sql = 'INSERT INTO price_list (price, id_product, supplier) VALUES ('.$this->db->escape($price).',
+		'.$this->db->escape($id_product).','.$this->db->escape($supplier).')';
 		$query = $this->db->query($sql);
 		return $this->db->insert_id();
 	}

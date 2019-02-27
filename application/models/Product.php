@@ -5,8 +5,10 @@ class Product extends CI_Model {
 
 	public function insert_product($name_product, $description, $measure_unit, $photo, $id_group)
 	{
-		$sql = 'INSERT INTO product(name_product, description, measure_unit, photo, id_group) VALUES (?,?,?,?,?)';
-		$query = $this->db->query($name_product, $description, $measure_unit, $photo, $id_group);
+		$sql = 'INSERT INTO product(name_product, description, measure_unit, photo, id_group) 
+		VALUES ('.$this->db->escape($name_product).', '.$this->db->escape($description).', 
+		'.$this->db->escape($measure_unit).', '.$this->db->escape($photo).', '.$this->db->escape_str($id_group).')';
+		$query = $this->db->query($sql);
 		$this->db->insert_id();
 	}
 	public function select_product($id_group, $name_product)

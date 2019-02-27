@@ -20,11 +20,11 @@
 				</select>
             </div>
             <div class = "form-group col-3">
-                    <label>Торговая точка</label>
-                    <select name = "id_trading" class ="form-control">
+                    <label>Прайс</label>
+                    <select name = "id_price" class ="form-control">
 <?php
             foreach ($price as $item){
-                 echo '<option value = "'.$item['id_trading'].'">'.$item['name_trading'].'</option>';
+                 echo '<option value = "'.$item['id_price'].'">'.$item['price'].'</option>';
              }
 ?>				
                     </select>
@@ -41,23 +41,29 @@
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
 			</div>
 		</div>
-		<table class="table">
+		<table class="table" id="table">
 				<thead class = "thead-dark">
 					<tr>
 						<th col = "">№</th>
-						<th col = "">Цена</th>
-						<th col = "">№ товара</th>
-						<th col = "">Поставщик</th>
+						<th col = "">Дата заказа</th>
+						<th col = "">Дата оплаты</th>
+						<th col = "">№ торговой точки</th>
+						<th col = "">№ прайса</th>
+						<th col = "">Количество заказа</th>
+						<th col = "">№ пользователя</th>
 					</tr>
 				</thead>
 				<tbody>
 	<?php
-			foreach ($price as $item){
+			foreach ($order as $item){
 				echo '<tr>';
+				echo '		<td>'.$item['id_order'].'</td>';
+				echo '		<td>'.$item['data_order'].'</td>';
+				echo '		<td>'.$item['data_payment'].'</td>';
+				echo '		<td>'.$item['id_trading'].'</td>';
 				echo '		<td>'.$item['id_price'].'</td>';
-				echo '		<td>'.$item['price'].'</td>';
-				echo '		<td>'.$item['id_product'].'</td>';
-				echo '		<td>'.$item['supplier'].'</td>';
+				echo '		<td>'.$item['count_order'].'</td>';
+				echo '		<td>'.$item['id_user'].'</td>';
 				echo '</tr>';
 			}			
 	?>
