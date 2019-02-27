@@ -3,11 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Product extends CI_Model {
 
-	public function insert_product($name_product, $description, $measure_unit, $photo, $id_group)
+	public function insert_product($name_product, $description, $measure_unit, $photo, $category_id)
 	{
-		$sql = 'INSERT INTO product(name_product, description, measure_unit, photo, id_group) 
+		$sql = 'INSERT INTO product(name_product, description, measure_unit, photo, category_id) 
 		VALUES ('.$this->db->escape($name_product).', '.$this->db->escape($description).', 
-		'.$this->db->escape($measure_unit).', '.$this->db->escape($photo).', '.$this->db->escape_str($id_group).')';
+		'.$this->db->escape($measure_unit).', '.$this->db->escape($photo).', '.$this->db->escape_str($category_id).')';
 		$query = $this->db->query($sql);
 		$this->db->insert_id();
 	}

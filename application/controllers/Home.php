@@ -31,14 +31,14 @@ class Home extends CI_Controller {
 			$login = $this->input->post('login');
 			$password = $this->input->post('password');
 			//проверка логина и пароля		
-			$data['users'] = $this->users->select_user($login, $password);
-			if(empty($data['users'])){
+			$data['user'] = $this->users->select_user($login, $password);
+			if(empty($data['user'])){
 				$data['message'] = 'Вы ввели неверный логин или пароль!';
 			}
 			else{
 				$usersdata = array(
-					'id_user' => $data['users']['id_user'],
-					'role' => $data['users']['role']
+					'id_user' => $data['user']['id'],
+					'role' => $data['user']['role']
 				);
 				$this->session->set_userdata($usersdata);
 				redirect('');

@@ -10,7 +10,7 @@
 <?php
 			foreach($group_product as $item)
 			{
-				echo '<button type = "submit" name = "action" class = "list-group-item list-group-item-action" value = "'.$item['id_group'].'" name = "id_group">'.$item['name_group'].'</button>';
+				echo '<button type = "submit" name = "action" class = "list-group-item list-group-item-action" value = "'.$item['id'].'" name = "id_group">'.$item['name_category'].'</button>';
 			}
 ?>					
 					</ul>
@@ -62,7 +62,7 @@
 					<div class = "modal-body">
 <?php
 				foreach($trading as $item){
-					echo '<p><button type = "submit" class = "btn btn-link">'.$item['type_trading'].' '.$item['name_trading'].'</button></p>';
+					echo '<p><button type = "submit" class = "btn btn-link">'.$item['type_market'].' '.$item['name_market'].'</button></p>';
 				}
 ?>
 					</div>

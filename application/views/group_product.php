@@ -21,8 +21,8 @@
     <?php
             foreach ($group_product as $item){
                 echo '<tr>';
-                echo '		<td>'.$item['id_group'].'</td>';
-                echo '		<td>'.$item['name_group'].'</td>';
+                echo '		<td>'.$item['id'].'</td>';
+                echo '		<td>'.$item['name_category'].'</td>';
                 echo '	</tr>';
             }			
     ?>

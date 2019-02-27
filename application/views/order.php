@@ -57,7 +57,7 @@
 	<?php
 			foreach ($order as $item){
 				echo '<tr>';
-				echo '		<td>'.$item['id_order'].'</td>';
+				echo '		<td>'.$item['id'].'</td>';
 				echo '		<td>'.$item['data_order'].'</td>';
 				echo '		<td>'.$item['data_payment'].'</td>';
 				echo '		<td>'.$item['id_trading'].'</td>';

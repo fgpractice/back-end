@@ -19,9 +19,9 @@ class Products extends CI_Controller {
 			$description = $this->input->post('description');
 			$measure_unit = $this->input->post('measure_unit');
 			$photo = $this->input->post('photo');
-			$id_group = $this->input->post('id_group');
+			$category_id = $this->input->post('category_id');
 			//добавление записи
-			$data['product'] = $this->product->insert_product($name_product, $description, $measure_unit, $photo, $id_group);
+			$data['product'] = $this->product->insert_product($name_product, $description, $measure_unit, $photo, $category_id);
 			redirect('products/product');
 		}
 		$this->load->view('head');

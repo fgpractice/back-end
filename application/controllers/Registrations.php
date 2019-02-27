@@ -15,9 +15,9 @@ class Registrations extends CI_Controller {
 			$email = $this->input->post('email');
 			$phone = $this->input->post('phone');
 			$device = $this->input->post('device');
-			$first_name = $this->input->post('first_name');
+			$name_user = $this->input->post('name_user');
 			//добавление пользователя
-			$data['users'] = $this->users->insert_user($login, $password, $email, $phone, $device, $first_name);
+			$data['users'] = $this->users->insert_user($login, $password, $email, $phone, $device, $name_user);
 			redirect('registrations/registration');
 		}
 		$this->load->view('head');

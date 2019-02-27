@@ -11,14 +11,14 @@ class Trading extends CI_Model {
 	}
 	public function select_tradings()
 	{
-		$query = $this->db->get('trading');
+		$query = $this->db->get('market');
 		return $query->result_array();
 	}
-	public function insert_trading($type_trading, $name_trading, $name_owner, $contact, $address_trading, $bank_account, $user_id)
+	public function insert_trading($type_market, $name_market, $name_owner, $contact, $address_market, $bank_info, $user_id)
 	{
-		$sql = 'INSERT INTO trading (type_trading, name_trading, name_owner, contact, address_trading, bank_account, user_id) 
-		VALUES('.$this->db->escape($type_trading).', '.$this->db->escape($name_trading).', '.$this->db->escape($name_owner).',
-		'.$this->db->escape($contact).', '.$this->db->escape($address_trading).', '.$this->db->escape($bank_account).',
+		$sql = 'INSERT INTO market (type_market, name_market, name_owner, contact, address_market, bank_info, user_id) 
+		VALUES('.$this->db->escape($type_market).', '.$this->db->escape($name_market).', '.$this->db->escape($name_owner).',
+		'.$this->db->escape($contact).', '.$this->db->escape($address_market).', '.$this->db->escape($bank_info).',
 		'.$this->db->escape($user_id).')';
 		$query = $this->db->query($sql);
 		return $this->db->insert_id();

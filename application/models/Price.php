@@ -14,10 +14,10 @@ class Price extends CI_Model {
 		$query = $this->db->query($sql, array ($id_product));
 		return $query->result_array();
 	}
-	public function insert_price($price, $id_product, $supplier)
+	public function insert_price($price, $product_id, $supplier)
 	{
-		$sql = 'INSERT INTO price_list (price, id_product, supplier) VALUES ('.$this->db->escape($price).',
-		'.$this->db->escape($id_product).','.$this->db->escape($supplier).')';
+		$sql = 'INSERT INTO price_list (price, product_id, supplier) VALUES ('.$this->db->escape($price).',
+		'.$this->db->escape($product_id).','.$this->db->escape($supplier).')';
 		$query = $this->db->query($sql);
 		return $this->db->insert_id();
 	}

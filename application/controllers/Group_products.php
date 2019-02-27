@@ -12,9 +12,9 @@ class Group_products extends CI_Controller {
 		//добавление группы товара
 		if(!empty($_POST)){
 			//добавление переменной ввода названия группы
-			$name_group = $this->input->post('name_group');
+			$name_category = $this->input->post('name_category');
 			//выполнить добавление
-			$data['group_product'] = $this->group_product->insert_group_product($name_group);
+			$data['group_product'] = $this->group_product->insert_group_product($name_category);
 			redirect('group_products/group_product');
 		}
 		$this->load->view('head');

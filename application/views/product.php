@@ -3,10 +3,10 @@
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Группа товара</label>
-				<select name = "id_group" class = "form-control">
+				<select name = "category_id" class = "form-control">
 <?php
 			foreach ($group_product as $item){
-				echo '<option value = "'.$item['id_group'].'">'.$item['name_group'].'</option>';
+				echo '<option value = "'.$item['id_category'].'">'.$item['name_category'].'</option>';
 			}		
 ?>
 				</select>
@@ -50,12 +50,12 @@
 	<?php
 			foreach ($product as $item){
 				echo '<tr>';
-				echo '		<td>'.$item['id_product'].'</td>';
+				echo '		<td>'.$item['id'].'</td>';
 				echo '		<td>'.$item['name_product'].'</td>';
 				echo '		<td>'.$item['description'].'</td>';
 				echo '		<td>'.$item['measure_unit'].'</td>';
 				echo '		<td>'.$item['photo'].'</td>';
-				echo '		<td>'.$item['group_id'].'</td>';
+				echo '		<td>'.$item['category_id'].'</td>';
 				echo '</tr>';
 			}			
 	?>

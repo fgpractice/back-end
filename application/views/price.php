@@ -3,7 +3,7 @@
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Товар</label>
-				<select name = "id_product" class ="form-control">
+				<select name = "product_id" class ="form-control">
 <?php
 			foreach ($product as $item){
 				echo '<option value = "'.$item['id_product'].'">'.$item['name_product'].'</option>';
@@ -36,7 +36,7 @@
 	<?php
 			foreach ($price as $item){
 				echo '<tr>';
-				echo '		<td>'.$item['id_price'].'</td>';
+				echo '		<td>'.$item['id'].'</td>';
 				echo '		<td>'.$item['price'].'</td>';
 				echo '		<td>'.$item['product_id'].'</td>';
 				echo '		<td>'.$item['supplier'].'</td>';

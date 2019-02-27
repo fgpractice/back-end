@@ -16,9 +16,9 @@ class Prices extends CI_Controller {
 		if(!empty($_POST)){
 			//добавление переменных
 			$price = $this->input->post('price');
-			$id_product = $this->input->post('id_product');
+			$product_id = $this->input->post('product_id');
 			$supplier = $this->input->post('supplier');
-			$data['price'] = $this->price->insert_price($price, $id_product, $supplier);
+			$data['price'] = $this->price->insert_price($price, $product_id, $supplier);
 			redirect('prices/price');
 		}
 		$this->load->view('head');

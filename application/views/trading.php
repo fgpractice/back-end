@@ -51,13 +51,13 @@
 <?php
 		foreach ($trading as $item){
 			echo '<tr>';
-			echo '		<td>'.$item['id_trading'].'</td>';
-			echo '		<td>'.$item['type_trading'].'</td>';
-			echo '		<td>'.$item['name_trading'].'</td>';
+			echo '		<td>'.$item['id'].'</td>';
+			echo '		<td>'.$item['type_market'].'</td>';
+			echo '		<td>'.$item['name_market'].'</td>';
 			echo '		<td>'.$item['name_owner'].'</td>';
 			echo '		<td>'.$item['contact'].'</td>';
-			echo '		<td>'.$item['address_trading'].'</td>';
-			echo '		<td>'.$item['bank_account'].'</td>';
+			echo '		<td>'.$item['address_market'].'</td>';
+			echo '		<td>'.$item['bank_info'].'</td>';
 			echo '		<td>'.$item['user_id'].'</td>';
 			echo '	</tr>';
 		}			

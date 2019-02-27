@@ -10,7 +10,7 @@
                 <input type = "password" name = "password" class = "form-control" required>
 			</div>
             <div class = "form-group col-3">
-				<label>Фамилия</label>
+				<label>Имя</label>
                 <input type = "text" name = "first_name" class = "form-control" required>
 			</div>
             <div class = "form-group col-3">
@@ -36,7 +36,7 @@
 						<th col = "">№</th>
 						<th col = "">Логин</th>
                         <th col = "">Пароль</th>
-						<th col = "">Фамилия</th>
+						<th col = "">Имя</th>
 						<th col = "">E-mail</th>
                         <th col = "">Телефон</th>
                         <th col = "">imei</th>
@@ -46,10 +46,10 @@
 	<?php
 			foreach ($users as $item){
 				echo '<tr>';
-                echo '		<td>'.$item['id_user'].'</td>';
+                echo '		<td>'.$item['id'].'</td>';
                 echo '		<td>'.$item['login'].'</td>';
 				echo '		<td>'.$item['password'].'</td>';
-				echo '		<td>'.$item['first_name'].'</td>';
+				echo '		<td>'.$item['name_user'].'</td>';
                 echo '		<td>'.$item['email'].'</td>';
                 echo '		<td>'.$item['phone'].'</td>';
                 echo '		<td>'.$item['device'].'</td>';
