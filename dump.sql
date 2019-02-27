@@ -2,13 +2,18 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -24,27 +29,41 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: category_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
+--
+
+CREATE SEQUENCE public.category_ids
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.category_ids OWNER TO frigate_user;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: group_product; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: category; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
-CREATE TABLE public.group_product (
-    id_group integer NOT NULL,
-    name_group character varying(100)
+CREATE TABLE public.category (
+    id integer DEFAULT nextval('public.category_ids'::regclass) NOT NULL,
+    name_category character varying(100) NOT NULL
 );
 
 
-ALTER TABLE public.group_product OWNER TO postgres;
+ALTER TABLE public.category OWNER TO frigate_user;
 
 --
--- Name: group_product_id_group_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: market_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
 --
 
-CREATE SEQUENCE public.group_product_id_group_seq
+CREATE SEQUENCE public.market_ids
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -52,52 +71,31 @@ CREATE SEQUENCE public.group_product_id_group_seq
     CACHE 1;
 
 
-ALTER TABLE public.group_product_id_group_seq OWNER TO postgres;
+ALTER TABLE public.market_ids OWNER TO frigate_user;
 
 --
--- Name: group_product_id_group_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: market; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
-ALTER SEQUENCE public.group_product_id_group_seq OWNED BY public.group_product.id_group;
-
-
---
--- Name: id_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.id_user_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.id_user_seq OWNER TO postgres;
-
---
--- Name: orders; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE public.orders (
-    id_order integer NOT NULL,
-    data_order date,
-    data_payment date,
-    data_sending date,
-    id_trading integer,
-    id_price integer,
-    count_order numeric(10,2),
-    id_user integer
+CREATE TABLE public.market (
+    id integer DEFAULT nextval('public.market_ids'::regclass) NOT NULL,
+    user_id integer NOT NULL,
+    type_market character varying(100),
+    name_market character varying(200) NOT NULL,
+    name_owner character varying(200),
+    contact character varying(100),
+    address_market character varying(200),
+    bank_info character varying(100)
 );
 
 
-ALTER TABLE public.orders OWNER TO postgres;
+ALTER TABLE public.market OWNER TO frigate_user;
 
 --
--- Name: orders_id_order_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: order_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
 --
 
-CREATE SEQUENCE public.orders_id_order_seq
+CREATE SEQUENCE public.order_ids
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -105,34 +103,86 @@ CREATE SEQUENCE public.orders_id_order_seq
     CACHE 1;
 
 
-ALTER TABLE public.orders_id_order_seq OWNER TO postgres;
+ALTER TABLE public.order_ids OWNER TO frigate_user;
 
 --
--- Name: orders_id_order_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: order; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
-ALTER SEQUENCE public.orders_id_order_seq OWNED BY public.orders.id_order;
+CREATE TABLE public."order" (
+    id integer DEFAULT nextval('public.order_ids'::regclass) NOT NULL,
+    user_id integer NOT NULL,
+    market_id integer NOT NULL,
+    date_order date NOT NULL,
+    date_payment date
+);
 
+
+ALTER TABLE public."order" OWNER TO frigate_user;
 
 --
--- Name: price_list; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: order_product_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
+--
+
+CREATE SEQUENCE public.order_product_ids
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.order_product_ids OWNER TO frigate_user;
+
+--
+-- Name: order_product; Type: TABLE; Schema: public; Owner: frigate_user
+--
+
+CREATE TABLE public.order_product (
+    id integer DEFAULT nextval('public.order_product_ids'::regclass) NOT NULL,
+    order_id integer NOT NULL,
+    product_id integer NOT NULL,
+    price_list_id integer NOT NULL,
+    total_count integer NOT NULL,
+    total_amount numeric(8,2) NOT NULL
+);
+
+
+ALTER TABLE public.order_product OWNER TO frigate_user;
+
+--
+-- Name: price_list_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
+--
+
+CREATE SEQUENCE public.price_list_ids
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.price_list_ids OWNER TO frigate_user;
+
+--
+-- Name: price_list; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
 CREATE TABLE public.price_list (
-    id_price integer NOT NULL,
-    price integer,
-    id_product integer,
+    id integer DEFAULT nextval('public.price_list_ids'::regclass) NOT NULL,
+    product_id integer NOT NULL,
+    price numeric(8,2) NOT NULL,
     supplier character varying(100)
 );
 
 
-ALTER TABLE public.price_list OWNER TO postgres;
+ALTER TABLE public.price_list OWNER TO frigate_user;
 
 --
--- Name: price_id_price_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: product_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
 --
 
-CREATE SEQUENCE public.price_id_price_seq
+CREATE SEQUENCE public.product_ids
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -140,36 +190,29 @@ CREATE SEQUENCE public.price_id_price_seq
     CACHE 1;
 
 
-ALTER TABLE public.price_id_price_seq OWNER TO postgres;
+ALTER TABLE public.product_ids OWNER TO frigate_user;
 
 --
--- Name: price_id_price_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.price_id_price_seq OWNED BY public.price_list.id_price;
-
-
---
--- Name: product; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: product; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
 CREATE TABLE public.product (
-    id_product integer NOT NULL,
-    name_product character varying(200),
+    id integer DEFAULT nextval('public.product_ids'::regclass) NOT NULL,
+    category_id integer NOT NULL,
+    name_product character varying(200) NOT NULL,
     description character varying(500),
-    measure_unit character varying(10),
-    photo character varying(100),
-    id_group integer
+    measure_unit character varying(5),
+    photo character varying(100)
 );
 
 
-ALTER TABLE public.product OWNER TO postgres;
+ALTER TABLE public.product OWNER TO frigate_user;
 
 --
--- Name: product_id_product_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: user_ids; Type: SEQUENCE; Schema: public; Owner: frigate_user
 --
 
-CREATE SEQUENCE public.product_id_product_seq
+CREATE SEQUENCE public.user_ids
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -177,322 +220,281 @@ CREATE SEQUENCE public.product_id_product_seq
     CACHE 1;
 
 
-ALTER TABLE public.product_id_product_seq OWNER TO postgres;
+ALTER TABLE public.user_ids OWNER TO frigate_user;
 
 --
--- Name: product_id_product_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: user; Type: TABLE; Schema: public; Owner: frigate_user
 --
 
-ALTER SEQUENCE public.product_id_product_seq OWNED BY public.product.id_product;
-
-
---
--- Name: trading; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE public.trading (
-    id_trading integer NOT NULL,
-    type_trading character varying(100),
-    name_trading character varying(200),
-    fio character varying(200),
-    contact character varying(100),
-    address_trading character varying(200),
-    bank_account character varying(100)
-);
-
-
-ALTER TABLE public.trading OWNER TO postgres;
-
---
--- Name: trading_id_trading_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.trading_id_trading_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.trading_id_trading_seq OWNER TO postgres;
-
---
--- Name: trading_id_trading_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.trading_id_trading_seq OWNED BY public.trading.id_trading;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE public.users (
-    id_user integer DEFAULT nextval('public.id_user_seq'::regclass) NOT NULL,
-    login character varying(50),
-    password character varying(50),
-    first_name character varying(100),
+CREATE TABLE public."user" (
+    id integer DEFAULT nextval('public.user_ids'::regclass) NOT NULL,
+    login character varying(50) NOT NULL,
+    password character varying(50) NOT NULL,
     email character varying(100),
     phone character varying(50),
+    role integer NOT NULL,
     device character varying(50),
-    role integer
+    name_user character varying(100)
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public."user" OWNER TO frigate_user;
 
 --
--- Name: id_group; Type: DEFAULT; Schema: public; Owner: postgres
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.group_product ALTER COLUMN id_group SET DEFAULT nextval('public.group_product_id_group_seq'::regclass);
-
-
---
--- Name: id_order; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.orders ALTER COLUMN id_order SET DEFAULT nextval('public.orders_id_order_seq'::regclass);
-
-
---
--- Name: id_price; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.price_list ALTER COLUMN id_price SET DEFAULT nextval('public.price_id_price_seq'::regclass);
-
-
---
--- Name: id_product; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.product ALTER COLUMN id_product SET DEFAULT nextval('public.product_id_product_seq'::regclass);
-
-
---
--- Name: id_trading; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.trading ALTER COLUMN id_trading SET DEFAULT nextval('public.trading_id_trading_seq'::regclass);
-
-
---
--- Data for Name: group_product; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.group_product (id_group, name_group) FROM stdin;
-1	Ноутбуки
-2	Овощи
-3	Фрукты
+COPY public.category (id, name_category) FROM stdin;
+1	Овощи и фрукты
+2	Красота и здоровье
+3	Товары для дома
 4	Товары для кухни
-5	Красота и здоровье
-6	Товары для дома
-7	Инструменты
-8	Офисная техника и мебель
+5	Офисная техника и мебель
+6	Ноутбуки
+7	Смартфоны
+8	Телевизоры и медиа
 9	Аудиотехника
-10	Смартфоны
-11	Телевизоры и медиа
+10	Инструменты
 \.
 
 
 --
--- Name: group_product_id_group_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: category_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-SELECT pg_catalog.setval('public.group_product_id_group_seq', 11, true);
-
-
---
--- Name: id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.id_user_seq', 2, true);
+SELECT pg_catalog.setval('public.category_ids', 10, true);
 
 
 --
--- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: market; Type: TABLE DATA; Schema: public; Owner: frigate_user
 --
 
-COPY public.orders (id_order, data_order, data_payment, data_sending, id_trading, id_price, count_order, id_user) FROM stdin;
+COPY public.market (id, user_id, type_market, name_market, name_owner, contact, address_market, bank_info) FROM stdin;
+1	1	Торговый центр	Космос	Иванов Иван Иванович	+79211234567	Баклановский проспект 120	612235546548
+3	1	Торговый центр	Платовский	Артемьев Артем Наумович	+79881234567	пр. Платовский 71	612231546548
+2	1	Торговый центр	Вавилон	Ершов Тимофей Евсеевич	+79111234567	пр. Космонавтов 85	612231546548
 \.
 
 
 --
--- Name: orders_id_order_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: market_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-SELECT pg_catalog.setval('public.orders_id_order_seq', 1, false);
-
-
---
--- Name: price_id_price_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.price_id_price_seq', 10, true);
+SELECT pg_catalog.setval('public.market_ids', 3, true);
 
 
 --
--- Data for Name: price_list; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: order; Type: TABLE DATA; Schema: public; Owner: frigate_user
 --
 
-COPY public.price_list (id_price, price, id_product, supplier) FROM stdin;
-1	400	4	SVEN
-2	450	4	SVEN
-3	500	4	SVEN
-4	90000	2	Sharp
-5	95000	2	Sharp
-6	100000	2	Sharp
-7	31000	3	HP
-8	29000	3	HP
-9	30000	3	HP
-10	35000	3	HP
+COPY public."order" (id, user_id, market_id, date_order, date_payment) FROM stdin;
+1	1	3	2019-02-27	\N
 \.
 
 
 --
--- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: order_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-COPY public.product (id_product, name_product, description, measure_unit, photo, id_group) FROM stdin;
-4	Колонки 2.0 SVEN 120	Обычные колонки для дома	шт	sven120.jpg	9
-1	Neffoc C5L	Ультратонкий телефон	шт	neffoc5cl.jpg	10
-2	Холодильник Sharp SJXG55PMSL	Непревзойденный холодильник в повседневности	шт	sharpsjxg55pmsl.jpg	6
-3	Ноутбук HP 250 G6	Неплохой ноутбук	шт	hp250g6.jpg	1
+SELECT pg_catalog.setval('public.order_ids', 1, true);
+
+
+--
+-- Data for Name: order_product; Type: TABLE DATA; Schema: public; Owner: frigate_user
+--
+
+COPY public.order_product (id, order_id, product_id, price_list_id, total_count, total_amount) FROM stdin;
+1	1	3	8	3	90000.00
 \.
 
 
 --
--- Name: product_id_product_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: order_product_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-SELECT pg_catalog.setval('public.product_id_product_seq', 4, true);
+SELECT pg_catalog.setval('public.order_product_ids', 1, true);
 
 
 --
--- Data for Name: trading; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: price_list; Type: TABLE DATA; Schema: public; Owner: frigate_user
 --
 
-COPY public.trading (id_trading, type_trading, name_trading, fio, contact, address_trading, bank_account) FROM stdin;
-1	Торговый центр	Космос	Сидоров В.В.	sidorov@mail.ru	Баклановский проспект 120	612235546548
-2	Торговый центр	Вавилон	Гладунов А.А.	gladunov@mail.ru	пр. Космонавтов 85	612231546548
-3	Торговый центр	Вавилония	Воронов А.А.	voronov@mail.ru	Западный	633231546548
+COPY public.price_list (id, product_id, price, supplier) FROM stdin;
+1	4	400.00	SVEN
+2	4	450.00	SVEN
+3	4	500.00	SVEN
+4	2	90000.00	Sharp
+5	2	95000.00	Sharp
+6	2	100000.00	Sharp
+7	3	29000.00	HP
+8	3	30000.00	HP
+9	3	35000.00	HP
+10	1	9000.00	Neffoc
 \.
 
 
 --
--- Name: trading_id_trading_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: price_list_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-SELECT pg_catalog.setval('public.trading_id_trading_seq', 3, true);
+SELECT pg_catalog.setval('public.price_list_ids', 10, true);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: frigate_user
 --
 
-COPY public.users (id_user, login, password, first_name, email, phone, device, role) FROM stdin;
-2	admin	admin	\N	\N	\N	\N	1
-1	spiridonov	spiridonov	Спиридонов	spiridonov@mail.ru	89604651354	смартфон	0
+COPY public.product (id, category_id, name_product, description, measure_unit, photo) FROM stdin;
+1	7	Neffoc C5L	Ультратонкий телефон	шт	neffoc5cl.jpg
+2	4	Холодильник Sharp SJXG55PMSL	Непревзойденный холодильник в повседневности	шт	sharpsjxg55pmsl.jpg
+3	6	Ноутбук HP 250 G6	Неплохой ноутбук	шт	hp250g6.jpg
+4	9	Колонки 2.0 SVEN 120	Обычные колонки для дома	шт	sven120.jpg
 \.
 
 
 --
--- Name: group_product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: product_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.group_product
-    ADD CONSTRAINT group_product_pkey PRIMARY KEY (id_group);
-
-
---
--- Name: orders_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_pkey PRIMARY KEY (id_order);
+SELECT pg_catalog.setval('public.product_ids', 4, true);
 
 
 --
--- Name: price_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: frigate_user
+--
+
+COPY public."user" (id, login, password, email, phone, role, device, name_user) FROM stdin;
+1	admin	admin			1		
+2	spiridonov	spiridonov			0		Спиридонов Александр
+3	bartsevich	bartsevich			0		Барцевич Роман
+\.
+
+
+--
+-- Name: user_ids; Type: SEQUENCE SET; Schema: public; Owner: frigate_user
+--
+
+SELECT pg_catalog.setval('public.user_ids', 3, true);
+
+
+--
+-- Name: category category_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pk PRIMARY KEY (id);
+
+
+--
+-- Name: market market_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.market
+    ADD CONSTRAINT market_pk PRIMARY KEY (id);
+
+
+--
+-- Name: order order_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT order_pk PRIMARY KEY (id);
+
+
+--
+-- Name: order_product order_product_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.order_product
+    ADD CONSTRAINT order_product_pk PRIMARY KEY (id);
+
+
+--
+-- Name: price_list price_list_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
 ALTER TABLE ONLY public.price_list
-    ADD CONSTRAINT price_pkey PRIMARY KEY (id_price);
+    ADD CONSTRAINT price_list_pk PRIMARY KEY (id);
 
 
 --
--- Name: product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: product product_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
 ALTER TABLE ONLY public.product
-    ADD CONSTRAINT product_pkey PRIMARY KEY (id_product);
+    ADD CONSTRAINT product_pk PRIMARY KEY (id);
 
 
 --
--- Name: trading_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: user user_pk; Type: CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.trading
-    ADD CONSTRAINT trading_pkey PRIMARY KEY (id_trading);
-
-
---
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id_user);
+ALTER TABLE ONLY public."user"
+    ADD CONSTRAINT user_pk PRIMARY KEY (id);
 
 
 --
--- Name: orders_id_price_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: product category_product_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_id_price_fkey FOREIGN KEY (id_price) REFERENCES public.price_list(id_price);
-
-
---
--- Name: orders_id_trading_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_id_trading_fkey FOREIGN KEY (id_trading) REFERENCES public.trading(id_trading);
+ALTER TABLE ONLY public.product
+    ADD CONSTRAINT category_product_fk FOREIGN KEY (category_id) REFERENCES public.category(id);
 
 
 --
--- Name: orders_id_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: order market_order_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.orders
-    ADD CONSTRAINT orders_id_user_fkey FOREIGN KEY (id_user) REFERENCES public.users(id_user);
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT market_order_fk FOREIGN KEY (market_id) REFERENCES public.market(id);
 
 
 --
--- Name: price_id_product_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: order_product order_order_product_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.order_product
+    ADD CONSTRAINT order_order_product_fk FOREIGN KEY (order_id) REFERENCES public."order"(id);
+
+
+--
+-- Name: order_product price_list_order_product_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.order_product
+    ADD CONSTRAINT price_list_order_product_fk FOREIGN KEY (price_list_id) REFERENCES public.price_list(id);
+
+
+--
+-- Name: order_product product_order_product_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
+--
+
+ALTER TABLE ONLY public.order_product
+    ADD CONSTRAINT product_order_product_fk FOREIGN KEY (product_id) REFERENCES public.product(id);
+
+
+--
+-- Name: price_list product_price_list_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
 ALTER TABLE ONLY public.price_list
-    ADD CONSTRAINT price_id_product_fkey FOREIGN KEY (id_product) REFERENCES public.product(id_product);
+    ADD CONSTRAINT product_price_list_fk FOREIGN KEY (product_id) REFERENCES public.product(id);
 
 
 --
--- Name: product_id_group_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: market user_market_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
-ALTER TABLE ONLY public.product
-    ADD CONSTRAINT product_id_group_fkey FOREIGN KEY (id_group) REFERENCES public.group_product(id_group);
+ALTER TABLE ONLY public.market
+    ADD CONSTRAINT user_market_fk FOREIGN KEY (user_id) REFERENCES public."user"(id);
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: order user_order_fk; Type: FK CONSTRAINT; Schema: public; Owner: frigate_user
 --
 
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT user_order_fk FOREIGN KEY (user_id) REFERENCES public."user"(id);
 
 
 --
