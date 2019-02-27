@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql: host = localhost; dbname = orders',
+	'dsn'	=> 'pgsql: host = localhost; dbname = order_app',
 	'hostname' => 'localhost',
-	'username' => 'postgres',
-	'password' => 'frigatepsql',
-	'database' => 'orders',
+	'username' => 'frigate_user',
+	'password' => 'FrigatePasswordPSQL',
+	'database' => 'order_app',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => TRUE,
