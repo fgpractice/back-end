@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Market extends CI_Model {
 
-	public function select_market($id_trading)
+	public function select_market($id_market)
 	{
-		$sql = 'SELECT id_trading, type_trading, name_trading, fio, contact, address_trading, bank_account FROM trading WHERE id_trading = ?';
-		$query = $this->db->query($sql,array($id_trading));
+		$query = $this->db->get('market');
+		$this->db->where('id',$id_market);
 		return $query->row_array();
 	}
 	public function select_markets()
