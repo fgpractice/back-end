@@ -5,8 +5,11 @@ class Market extends CI_Model {
 
 	public function select_market($id_market)
 	{
-		$query = $this->db->get('market');
-		$this->db->where('id',$id_market);
+		$id_market = $this->db->escape_str($id_market);
+		//$query = $this->db->get('market');
+		// $this->db->where('id', $id_market);
+		$query = $this->db->get_where('market', array('id' => $id_market));
+		
 		return $query->row_array();
 	}
 	public function select_markets()

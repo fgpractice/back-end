@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-	<form method = "post" action = "product">
+	<?=form_open('products/product')?>
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Группа товара</label>
@@ -27,9 +27,9 @@
 					<option>л</option>
 				</select>
 			</div>
-			<div class = "form-group col-2">
+			<div class = "form-group col-3">
 				<label>Фото</label>
-				<input type = "text" name = "photo" class = "form-control">
+				<input type = "file" name = "photo" class = "form-control-file">
 			</div>
 			<div class = "form-group col-1 align-self-end">
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
@@ -54,12 +54,11 @@
 				echo '		<td>'.$item['name_product'].'</td>';
 				echo '		<td>'.$item['description'].'</td>';
 				echo '		<td>'.$item['measure_unit'].'</td>';
-				echo '		<td>'.$item['photo'].'</td>';
+				echo '		<td><img src="/assets/images/'.$item['photo'].'" alt="'.$item['name_product'].'" style="height:35px;"></td>';
 				echo '		<td>'.$item['category_id'].'</td>';
 				echo '</tr>';
 			}			
 	?>
 				</tbody>
 			</table>
-	</form>
 </div>

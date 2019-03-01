@@ -1,15 +1,21 @@
 <div class = "container-fluid">
-        <form method = "post" action = "category">
+        <?=form_open('categories/category')?>
             <div class = "form-row">
                 <div class = "form-group col-4">
                     <label>Наименование группы товара</label>
-                    <input type = "text" name = "name_group" class = "form-control">
+                    <input type = "text" name = "name_category" class = "form-control">
                 </div>
                 <div class = "form-group col-1 align-self-end">
 					<button type = "submit" class = "btn btn-primary">Добавить</button>
 				</div>
             </div>
-            
+
+
+            <? $query = $this->db->get('category')?>
+            <? $this->table->set_heading('№','Наименование группы товара')?>
+            <?=$this->table->generate($category)?>
+
+            //таблицу удалить
             <table class="table" id="table">
                 <thead class = "thead-dark">
                     <tr>
@@ -28,5 +34,4 @@
     ?>
                 </tbody>
             </table>
-        </form>
     </div>

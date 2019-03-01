@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-    <form = method = "post" action = "">
+    <?=form_open('home')?>
         <div class = "col offset-4">
             <div class = "form-group col-3">
                 <label>Логин</label>
@@ -13,5 +13,4 @@
                 <button type = "submit" class = "btn btn-primary">Войти</button>
             </div>
         </div>
-    </form>
 </div>

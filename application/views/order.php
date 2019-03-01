@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-	<form method = "post" action = "order">
+	<?=form_open('orders/order')?>
 		<div class = "form-row">
             <div class="form-group col-3">
                 <label>Дата оплаты</label>
@@ -13,8 +13,8 @@
 				<label>Торговая точка</label>
 				<select name = "id_trading" class ="form-control">
 <?php
-			foreach ($trading as $item){
-				echo '<option value = "'.$item['id_trading'].'">'.$item['name_trading'].'</option>';
+			foreach ($market as $item){
+				echo '<option value = "'.$item['id'].'">'.$item['name_market'].'</option>';
 			}
 ?>				
 				</select>
@@ -69,5 +69,4 @@
 	?>
 				</tbody>
 			</table>
-	</form>
 </div>

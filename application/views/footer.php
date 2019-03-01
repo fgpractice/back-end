@@ -1,4 +1,4 @@
-<!-- начало макета footer-->
+<!-- footer-->
 	<footer>
 		<div class = "navbar navbark-dark bg-white border border-primary">
 			<div class = "col-5">
@@ -12,6 +12,7 @@
 			</div>
 		</div>
 	</footer>
+<!-- /footer-->	
+<!-- /body-->
 </body>
 </html>
-<!-- конец макета footer-->

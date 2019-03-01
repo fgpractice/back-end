@@ -1,12 +1,12 @@
 <div class = "container-fluid">
-	<form method = "post" action = "price">
+	<?=form_open('prices/price')?>
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Товар</label>
 				<select name = "product_id" class ="form-control">
 <?php
 			foreach ($product as $item){
-				echo '<option value = "'.$item['id_product'].'">'.$item['name_product'].'</option>';
+				echo '<option value = "'.$item['id'].'">'.$item['name_product'].'</option>';
 			}
 ?>				
 				</select>
@@ -45,5 +45,4 @@
 	?>
 				</tbody>
 			</table>
-	</form>
 </div>

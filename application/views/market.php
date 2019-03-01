@@ -1,9 +1,9 @@
 <div class = "container-fluid">
-	<form method = "post" action = "market">
+	<?=form_open('markets/market')?>
 		<div class = "form-row">
 			<div class = "form-group col-2">
 				<label>Тип магазина</label>
-				<select name = "type_trading" class ="form-control">
+				<select name = "type_market" class ="form-control">
 					<option>Торговый центр</option>
 					<option>Ларек</option>
 					<option>Супермаркет</option>
@@ -12,7 +12,7 @@
 			</div>
 			<div class = "form-group col-3">
 				<label>Название</label>
-				<input type = "text" name = "name_trading" class = "form-control">
+				<input type = "text" name = "name_market" class = "form-control">
 			</div>		
 			<div class = "form-group col-3">
 				<label>ФИО директора</label>
@@ -24,11 +24,11 @@
 			</div>
 			<div class = "form-group col-2">
 				<label>Адрес</label>
-				<input type = "text" name = "address_trading" class = "form-control">
+				<input type = "text" name = "address_market" class = "form-control">
 			</div>
 			<div class = "form-group col-2">
 				<label>Банковский реквизит</label>
-				<input type = "text" name = "bank_account" class = "form-control">
+				<input type = "text" name = "bank_info" class = "form-control">
 			</div>
 			<div class = "form-group col-1 align-self-end">
 				<button type = "submit" class = "btn btn-primary">Добавить</button>
@@ -64,5 +64,4 @@
 ?>
 			</tbody>
 		</table>
-	</form>
 </div>

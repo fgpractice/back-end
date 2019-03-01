@@ -1,5 +1,5 @@
 <div class = "container-fluid">
-	<form method = "post" action = "registration">
+	<?=form_open('users/registration')?>
 		<div class = "form-row">
 			<div class = "form-group col-3">
 				<label>Логин</label>
@@ -58,5 +58,4 @@
 	?>
 				</tbody>
 			</table>
-	</form>
 </div>

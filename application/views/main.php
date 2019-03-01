@@ -1,6 +1,6 @@
 	<!-- начало макета main -->
 	<div class = "container-fluid">
-		<form method="post" action="order">
+		<!-- <form method="post" action="order"> -->
 		<!-- здесь уточнить сколько форм должно быть-->
 			<div class = "form-row">
 				<!-- вертикальная панель выбора товара-->
@@ -32,7 +32,7 @@
 			foreach($product as $item){
 				echo '<div class = "col-3">';
 				echo '	<div class = "card">';
-				echo '		<img src = "/assets/images/'.$item['photo'].'" style = "height:150px;">';
+				echo '		<img src = "/assets/images/'.$item['photo'].'" alt="'.$item['name_product'].'" style = "height:150px;">';
 				echo '		<div class = "card-body">';
 				echo '			<h5>'.$item['name_product'].'</h5>';
 				echo '			<p><b>Описание товара:</b></p>';

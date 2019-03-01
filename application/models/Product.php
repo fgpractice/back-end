@@ -34,8 +34,8 @@ class Product extends CI_Model {
 			$this->db->where('category_id',$category_id);
 		}
 		if(!empty($name_product)){
-			$where = "name_product LIKE '%".$this->db->escape_like_str($name_product)."%' ESCAPE '!'";
-			$this->db->where($where);
+			//$where = "name_product LIKE '%".$this->db->escape_like_str($name_product)."%' ESCAPE '!'";
+			//$this->db->where($where);
 		}
 
 		// $this->db->where('category_id',$category_id);
