@@ -3,6 +3,9 @@
 	<nav class = "navbar navbar-dark bg-white border border-primary">
 		<div class = "col-3">
             <img src = "<?=base_url()?>assets/images/logo.png" alt="Логотип компании">
+			<button type = "button" class = "btn btn-link" data-toggle = "modal" data-target = "#exampleModal">
+                <?= $text_market; ?>
+            </button>
         </div>
         <div class = "col-8">
             <a href = "<?=base_url()?>home" class = "btn btn-outline-primary">Главная</a>

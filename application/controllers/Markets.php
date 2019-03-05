@@ -8,6 +8,9 @@ class Markets extends CI_Controller {
 		//отображение данных в таблице
 		$this->load->model('market');
 		$data['market'] = $this->market->select_markets();
+		//отображение меню
+		$this->load->model('category');
+		$data['category'] = $this->category->select_category();
 		//добавление торговой точки
 		if(!empty($_POST)){
 			//добавление переменных

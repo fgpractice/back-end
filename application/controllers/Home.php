@@ -9,7 +9,6 @@ class Home extends CI_Controller {
 	// }
 	public function index()
 	{
-
 		//отображение группы товаров
 		$this->load->model('category');
 		$data['category'] = $this->category->select_category();
@@ -20,16 +19,16 @@ class Home extends CI_Controller {
 		$this->load->model('product');
 		//поиск товара
 		$name_product = ' ';
-		$id_group = 0;
+		$category_id = 0;
 		if(!empty($_POST)){
-			if(!empty($_POST['id_group'])){
-				$id_group = $_POST['id_group'];
+			if(!empty($_POST['category_id'])){
+				$category_id = $_POST['category_id'];
 			}
 			if(!empty($_POST['name_product'])){
 				$name_product = $_POST['name_product'];
 			}	
 		}
-		$data['product'] = $this->product->select_product($id_group, $name_product);
+		$data['product'] = $this->product->select_product($category_id, $name_product);
 		$this->load->model('user');
 		if(!empty($_POST)){
 			//добавление переменных
@@ -54,10 +53,7 @@ class Home extends CI_Controller {
 		//авторизация	
 		$this->load->view('head');		
 		if(isset($role)){
-			$this->load->library('adminas');
-			$this->adminas->nav_market();
-
-			//$this->load->view('navbar_input',$data);
+			$this->load->view('navbar_input');
 			$this->load->view('main',$data);
 		}
 		else{
