@@ -21,11 +21,12 @@ class User extends CI_Model {
 	public function select_user($login, $password)
 	{
 		//$sql = 'SELECT * FROM user WHERE login =? and password = ?';
-		$login = $this->db->escape('login');
-		$password = $this->db->escape('password');
-		$query = $this->db->get('user');
-		$this->db->where('login', $login);
-		$this->db->where('password', $password);
+		//$login = $this->db->escape($login);
+		//$password = $this->db->escape($password);
+		// $query = $this->db->get('user');
+		// $this->db->where('login', $login);
+		// $this->db->where('password', $password);
+		$query = $this->db->get_where('user', array('login' => $login, 'password' => $password));
 		return $query->row_array();
 	}
 }

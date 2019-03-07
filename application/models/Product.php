@@ -15,7 +15,6 @@ class Product extends CI_Model {
 	{		
 		$where = " name_product LIKE '%".$this->db->escape_like_str($name_product)."%' ESCAPE '!'";
 		$query = $this->db->get_where('product', $where);
-		//$this->db->where($where);
 		return $query->result_array();
 	}
 	public function select_product($category_id)

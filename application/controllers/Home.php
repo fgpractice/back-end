@@ -18,18 +18,21 @@ class Home extends CI_Controller {
 		//отображение всех товаров
 		$this->load->model('product');
 		//поиск товара
-		$name_product = ' ';
-		$category_id = 0;
-		if(!empty($_POST)){
-			if(!empty($_POST['category_id'])){
-				$category_id = $_POST['category_id'];
-			}
-			if(!empty($_POST['name_product'])){
-				$name_product = $_POST['name_product'];
-			}	
-		}
-		$data['product'] = $this->product->select_product($category_id, $name_product);
+		// $name_product = ' ';
+		// $category_id = 0;
+		// if(!empty($_POST)){
+		// 	if(!empty($_POST['category_id'])){
+		// 		$category_id = $_POST['category_id'];
+		// 	}
+		// 	if(!empty($_POST['name_product'])){
+		// 		$name_product = $_POST['name_product'];
+		// 	}	
+		// }
+		//$data['product'] = $this->product->select_product($category_id, $name_product);
+
 		$this->load->model('user');
+		
+		$data['message'] = '';
 		if(!empty($_POST)){
 			//добавление переменных
 			$login = $this->input->post('login');
@@ -39,7 +42,8 @@ class Home extends CI_Controller {
 			if(empty($data['user'])){
 				$data['message'] = 'Вы ввели неверный логин или пароль!';
 			}
-			else{
+			else
+			{
 				$usersdata = array(
 					'id_user' => $data['user']['id'],
 					'role' => $data['user']['role']
@@ -64,6 +68,7 @@ class Home extends CI_Controller {
 	}
 	//функция выхода
 	public function out(){
+		$this->session->unset_userdata('id_user');
 		$this->session->unset_userdata('role');
 		redirect('');
 	}

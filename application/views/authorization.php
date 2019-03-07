@@ -1,6 +1,9 @@
 <div class = "container-fluid">
     <?=form_open('home')?>
         <div class = "col offset-4">
+            <div class="col-3">
+                <?= $message; ?>
+            </div>
             <div class = "form-group col-3">
                 <label>Логин</label>
                 <input type = "text" name = "login" class = "form-control" required>
