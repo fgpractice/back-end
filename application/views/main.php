@@ -1,8 +1,8 @@
 	<!-- начало макета main -->
 	<div class = "container-fluid">
-		<form method="post" action="order">
-		<!-- здесь уточнить сколько форм должно быть-->
-			
+		<!-- <form method="post" action="order"> -->
+		<?=form_open('orders/order')?>
+		<!-- здесь уточнить сколько форм должно быть-->	
 			<div class = "form-row">
 				<!-- вертикальная панель выбора товара-->
 				<div class = "form-group col-2">
@@ -20,14 +20,14 @@
 			<div class = "col-10">
 			<!-- поиск товара-->
 			<div class="form-row" style="margin:15px;">
-				<button type="submit" class="btn btn-primary">Добавить заказ</button>
+				<?=form_submit('insert_order', 'Добавить заказ', 'class="btn btn-primary"');?>
 			</div>
 			<div class = "form-row">
 				<div class = "form-group col-6 offset-1">
 					<input type = "text" name = "name_product" class = "form-control">
 				</div>
 				<div class = "form-group col-1">
-					<button type = "submit" class = "btn btn-primary">Поиск</button>
+					<button type = "submit" class = "btn btn-primary" name="search">Поиск</button>
 				</div>
 			</div>
 			<!-- список товаров-->
@@ -62,6 +62,6 @@
 			</div>
 			<!-- -->
 			</div>	
-		</form>	
+		<!-- </form>	 -->
 	</div>
 	<!-- конец макета main-->

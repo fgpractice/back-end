@@ -5,7 +5,7 @@
 				<label>Группа товара</label>
 				<select name = "category_id" class = "form-control">
 <?php
-			foreach ($group_product as $item){
+			foreach ($category as $item){
 				echo '<option value = "'.$item['id_category'].'">'.$item['name_category'].'</option>';
 			}		
 ?>

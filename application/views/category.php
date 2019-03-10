@@ -9,8 +9,6 @@
 					<button type = "submit" class = "btn btn-primary">Добавить</button>
 				</div>
             </div>
-
-
             <? $query = $this->db->get('category')?>
             <? $this->table->set_heading('№','Наименование группы товара')?>
             <?=$this->table->generate($category)?>
