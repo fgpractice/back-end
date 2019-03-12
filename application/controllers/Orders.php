@@ -80,9 +80,6 @@ class Orders extends CI_Controller {
 			//добавление записи в таблицу заказ
 			$data['order'] = $this->order->insert_order($user_id, $market_id, $date_order, $date_payment);
 		}
-		$this->load->view('head');
-		$this->load->view('navbar_order',$data);
-		$this->load->view('main',$data);
-		$this->load->view('footer');
+		$this->load->view('order',$data);
 	}
 }
