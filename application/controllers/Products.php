@@ -13,20 +13,17 @@ class Products extends CI_Controller {
 		$this->load->model('category');
 		$data['category'] = $this->category->select_category();
 		//добавление продукта
-		if(!empty($_POST)){
+		if($this->input->post('insert_product')){
 			//добавление переменной
 			$name_product = $this->input->post('name_product');
 			$description = $this->input->post('description');
 			$measure_unit = $this->input->post('measure_unit');
 			$photo = $this->input->post('photo');
-			$category_id = $this->input->post('category_id');
+			$category_id = $this->input->post('id_category');
 			//добавление записи
 			$data['product'] = $this->product->insert_product($name_product, $description, $measure_unit, $photo, $category_id);
 			redirect('products/product');
 		}
-		$this->load->view('head');
-		$this->load->view('navbar_input');
 		$this->load->view('product',$data);
-		$this->load->view('footer');
 	}
 }

@@ -11,8 +11,10 @@ class Markets extends CI_Controller {
 		//отображение меню
 		$this->load->model('category');
 		$data['category'] = $this->category->select_category();
-		//добавление торговой точки
-		if(!empty($_POST)){
+		$id_market = $this->input->post('id_market');
+		//при нажатии на кнопку "Добавить" (добавление торговой точки в мод. окне)
+		if($this->input->post('insert_market'))
+		{
 			//добавление переменных
 			$type_market = $this->input->post('type_market');
 			$name_market = $this->input->post('name_market');
@@ -25,10 +27,20 @@ class Markets extends CI_Controller {
 			//добавление записи
 			$data['market'] = $this->market->insert_market($type_market, $name_market, $name_owner, $contact, $address_market, $bank_info, $user_id);
 			redirect('markets/market');
+		}
+		//при нажатии на кнопку "Изменить" в таблице
+		if($this->input->post('update_market'))
+		{
+			//изменение конкретной торговой точки
+			$data['market'] = $this->market->update_market($id_market, $type_market, $name_market, $name_owner, $contact, $address_market, $bank_info);
+			redirect('markets/market');
+		}
+		//при нажатии на кнопку "Удалить" в таблице
+		if($this->input->post('delete_market'))
+		{
+			$data['market'] = $this->market->delete_market($id_market);
+			redirect('markets/market');
 		}	
-		$this->load->view('head');
-		$this->load->view('navbar_input');
 		$this->load->view('market',$data);
-		$this->load->view('footer');
 	}
 }

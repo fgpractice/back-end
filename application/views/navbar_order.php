@@ -47,4 +47,5 @@
     </div>
         </form>
 	<!-- /modal fade -->
-	<!-- /navbar_input -->
+    <!-- /navbar_input -->
+    

@@ -1,67 +1,53 @@
-	<!-- начало макета main -->
-	<div class = "container-fluid">
-		<!-- <form method="post" action="order"> -->
-		<?=form_open('orders/order')?>
-		<!-- здесь уточнить сколько форм должно быть-->	
-			<div class = "form-row">
-				<!-- вертикальная панель выбора товара-->
-				<div class = "form-group col-2">
-					<ul class = "list-group">
-						<button type = "button" class = "list-group-item active">Группа товаров</button>
 <?php
-			foreach($category as $item)
-			{//name = "action"
-				echo '<button type = "submit" name = "category_id" class = "list-group-item list-group-item-action" value = "'.$item['id'].'">'.$item['name_category'].'</button>';
-			}
-?>					
-					</ul>
-				</div>			
-				<!-- -->			
-			<div class = "col-10">
-			<!-- поиск товара-->
-			<div class="form-row" style="margin:15px;">
-				<?=form_submit('insert_order', 'Добавить заказ', 'class="btn btn-primary"');?>
-			</div>
-			<div class = "form-row">
-				<div class = "form-group col-6 offset-1">
-					<input type = "text" name = "name_product" class = "form-control">
-				</div>
-				<div class = "form-group col-1">
-					<button type = "submit" class = "btn btn-primary" name="search">Поиск</button>
-				</div>
-			</div>
-			<!-- список товаров-->
-			<!-- <div class = "row"> -->
-			<table class="table" id="table">
-				<thead class = "thead-dark">
-					<tr>
-						<th col = "">№</th>
-						<th col = "">Фото</th>
-						<th col = "">Наименование</th>
-						<th col = "">Описание</th>
-						<th col = "">Ед. измерения</th>
-						<th col = "">Действие</th>
-					</tr>
-				</thead>
-				<tbody>
-	<?php
-			foreach ($product as $item){
-				echo '<tr>';
-				echo '		<td>'.$item['id'].'</td>';
-				echo '		<td><img src="/assets/images/'.$item['photo'].'" alt="'.$item['name_product'].'" style="height:35px;"></td>';	
-				echo '		<td>'.$item['name_product'].'</td>';
-				echo '		<td>'.$item['description'].'</td>';
-				echo '		<td>'.$item['measure_unit'].'</td>';
-				echo '		<td><button type="submit" class="btn btn-primary">Купить</button></td>';
-				echo '</tr>';
-			}			
-	?>
-				</tbody>
-			</table>			
-			<!-- </div> -->
-			</div>
-			<!-- -->
-			</div>	
-		<!-- </form>	 -->
-	</div>
-	<!-- конец макета main-->
+	//подключение head (html, подключение стилей и библиотек)
+	include 'temp/head.php';
+	//подключение навигационной + боковой панели
+	include 'temp/navbar.php';
+?>
+<!-- Начало контента страницы -->
+        <div class="container-fluid">
+        	<!-- Заголовок страницы -->
+          	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+            	<h1 class="h3 mb-0 text-gray-800">Главная</h1>
+            	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Сделать заказ</a>
+          	</div>
+          	<!-- Строка контента -->
+          	<div class="row">
+            	<div class="card-deck">
+              		<div class="card">
+                		<img src="assets/images/content/neffoc5cl.jpg" class="card-img-top" alt="...">
+                		<div class="card-body">
+                  			<h5 class="card-title">Neffoc C5L</h5>
+                  			<p class="card-text">Ультратонкий телефон.</p>
+                		</div>
+              		</div>
+              <div class="card">
+                <img src="assets/images/content/sharpsjxg55pmsl.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Холодильник Sharp SJXG55PMSL</h5>
+                  <p class="card-text">Непревзойденный холодильник в повседневности.</p>
+                </div>
+              </div>
+              <div class="card">
+                <img src="assets/images/content/hp250g6.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Ноутбук HP 250 G6</h5>
+                  <p class="card-text">Неплохой ноутбук.</p>
+                </div>
+              </div>
+              <div class="card">
+                <img src="assets/images/content/sven120.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Колонки 2.0 SVEN 120</h5>
+                  <p class="card-text">Обычные колонки для дома.</p>
+                </div>
+              </div>
+            </div>
+		  </div>
+		  <!-- /Строка контента-->
+        </div>
+		<!-- /Контент страницы -->
+<?php
+	//подключение подвала
+	include 'temp/footer.php';
+?>
