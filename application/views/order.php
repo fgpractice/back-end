@@ -47,7 +47,7 @@
 			echo '		<td>'.$item['measure_unit'].'</td>';
 			echo '	<td>';
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#insertModal">';
-			echo '			<i class="fas fa-pen fa-sm"></i>';
+			echo '			<i class="fas fa-fw fa-shopping-cart"></i>';
 			echo '  	</a>';
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
 			echo '			<i class="fas fa-pen fa-sm"></i>';
