@@ -12,6 +12,11 @@ class Markets extends CI_Controller {
 		$this->load->model('category');
 		$data['category'] = $this->category->select_category();
 		$id_market = $this->input->post('id_market');
+		//загружаем модель пользователя
+		$this->load->model('user');
+		//отображение имени пользователя в навбаре
+		$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+		$data['text_login'] = $data['data_user']['login'];
 		//при нажатии на кнопку "Добавить" (добавление торговой точки в мод. окне)
 		if($this->input->post('insert_market'))
 		{

@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 		$data['market'] = $this->market->select_markets();
 		//отображение всех товаров
 		$this->load->model('product');
+		$data['product'] = $this->product->select_products();
 		//загрузка модели пользователя
 		$this->load->model('user');		
 		$data['message'] = '';
@@ -40,6 +41,9 @@ class Home extends CI_Controller {
 		$role = $this->session->userdata('role');
 		//авторизация		
 		if(isset($role)){
+			//отображение имени пользователя в навбаре
+			$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+			$data['text_login'] = $data['data_user']['login'];
 			$this->load->view('main',$data);
 		}
 		else{

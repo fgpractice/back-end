@@ -13,6 +13,12 @@ class Prices extends CI_Controller {
 		$this->load->model('price');
 		//переменная id прайса
 		$id_price = $this->input->post('id_price');
+		//загружаем модель пользователя
+		$this->load->model('user');
+		//отображение имени пользователя в навбаре
+		$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+		$data['text_login'] = $data['data_user']['login'];
+		//отображение прайса
 		$data['price'] = $this->price->select_price();
 		//при нажатии на кнопку "Добавить" в модальном окне прайс-листа
 		if($this->input->post('insert_price'))

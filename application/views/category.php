@@ -40,15 +40,15 @@
 <?php
 		foreach($category as $item){
 			echo '<tr>';
-			echo '	<td><input type="hidden" value="'.$item['id'].'" name="id_category" id="id_category">'.$item['id'].'</td>';
+      echo '	<td><input type="hidden" value="'.$item['id'].'" name="id_category" id="id_category">'.$item['id'].'</td>';
 			echo '	<td>'.$item['name_category'].'</td>';
 			echo '	<td>';
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
 			echo '			<i class="fas fa-pen fa-sm"></i>';
 			echo '  	</a>';
-			echo '  	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteModal">';
+			echo '  	<button type="button" id="'.$item['id'].'" class="deleteModal d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm data-toggle="modal" data-target="#deleteModal">';
 			echo '			<i class="fas fa-trash fa-sm"></i>';
-			echo '  	</a>';
+			echo '  	</button>';
 			echo '	</td>';
 			echo '</tr>';
 		}
@@ -124,11 +124,13 @@
             <div class="modal-body">Вы действительно хотите удалить эту запись?</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
-              <?=form_submit('delete_category','Удалить', 'class="btn btn-primary"')?>
+              <?=form_submit('delete_category','Удалить', 'class="delete_cat btn btn-primary"')?>
             </div>
           </div>
         </div>
       </div>
+
+
 <?php
 	//подключение подвала
 	include 'temp/footer.php';

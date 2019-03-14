@@ -8,14 +8,6 @@ class Orders extends CI_Controller {
 	{
 		//переменная id торговой точки				
 		$id_market = $this->input->post('id_market');
-		//переменная id категории при выборе нужной категории товара	
-		$category_id = $this->input->post('category_id');
-		//переменная название товара из поисковика
-		$name_product = $this->input->post('name_product');
-		//загрузка модели категория товаров
-		$this->load->model('category');
-		//отображение в левом меню категория товаров
-		$data['category'] = $this->category->select_category();
 		//загрузка модели товара
 		$this->load->model('product');
 		//отображение всех товаров в карточках
@@ -27,8 +19,24 @@ class Orders extends CI_Controller {
 		//отображение существующей id торговой точки в навигационной панели
 		$session_id_market = $this->session->userdata('id_market');
 		$data['data_market'] = $this->market->select_market($session_id_market);
+		//загрузка модели пользователя
+		$this->load->model('user');
+		//отображение имени пользователя в навбаре
+		$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+		$data['text_login'] = $data['data_user']['login'];
+
+		//отображение прайс-листа с конкретным id товара
+		$id_product = $this->input->post('id_product');
+		//загрузка модели прайса
+		$this->load->model('price');
+		if($id_product)
+		{
+			$data['price'] = $this->price->select_price_product($id_product);
+
+		}	
+
 		//если id маркета в сессии пустая
-		 if(empty($session_id_market)){
+		if(empty($session_id_market)){
 			//тогда передаем текст
 		 	$data['text_market'] = 'Торговая точка';
 		}
@@ -54,23 +62,11 @@ class Orders extends CI_Controller {
 				$this->session->set_userdata($array_items);		
 			}
 		}
-		//при выборе категории товара по кнопке
-		if(!empty($category_id))
-		{		
-			//заносим переменную и выполняем запрос выбора категорииы
-			$data['product'] = $this->product->select_product($category_id);
-		}
-		//при нажатии на кнопку "Поиск"
-		if(!empty($name_product))
-		{
-		//заносим переменную и выполняем запрос поиска товара
-		$data['product'] = $this->product->search($name_product);
-		}	
-		//при нажатии на кнопку "Добавить заказ"
-		if(!empty($_POST['insert_order']))
+		//при нажатии на кнопку "Сделать заказ"
+		if($this->input->post('insert_order'))
 		{
 			$this->load->model('order');
-			//id пользователя
+			//id пользователя берем из сессии
 			$user_id = $this->session->userdata('id_user');
 			//id торговой точки
 			$market_id = $this->session->userdata('id_market');

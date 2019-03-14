@@ -23,13 +23,13 @@ class User extends CI_Model {
 	//авторизация (проверка логина и пароля)
 	public function select_user($login, $password)
 	{
-		//$sql = 'SELECT * FROM user WHERE login =? and password = ?';
-		//$login = $this->db->escape($login);
-		//$password = $this->db->escape($password);
-		// $query = $this->db->get('user');
-		// $this->db->where('login', $login);
-		// $this->db->where('password', $password);
 		$query = $this->db->get_where('users', array('login' => $login, 'password' => $password));
+		return $query->row_array();
+	}
+	//выборка одной записи пользователя с помощью id пользователя
+	public function select_nav_user($id_user)
+	{
+		$query = $this->db->get_where('users', array('id' => $id_user));
 		return $query->row_array();
 	}
 	//удаление конкретного пользователя

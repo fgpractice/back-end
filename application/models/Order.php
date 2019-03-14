@@ -9,7 +9,7 @@ class Order extends CI_Model {
 		$sql = 'INSERT INTO orders (user_id, market_id, date_order, date_payment) 
         VALUES ('.$this->db->escape($user_id).', '.$this->db->escape($market_id).', '.$this->db->escape($date_order).', 
         '.$this->db->escape($date_payment).')';
-		$query = $this->db->query($sql);
+        $query = $this->db->query($sql);
 		return $this->db->insert_id();
     }
     //выборка всех заказов

@@ -9,6 +9,9 @@ class Users extends CI_Controller {
 		$data['user'] = $this->user->select_users();
 		//id пользователя из таблицы
 		$id_user = $this->input->post('id_user');
+		//отображение имени пользователя в навбаре
+		$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+		$data['text_login'] = $data['data_user']['login'];
 		//при нажатии на кнопку "Добавить" (в модальном окне при добавлении пользователя)
 		if($this->input->post('insert_user'))
 		{	

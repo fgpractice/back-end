@@ -9,11 +9,11 @@ class Price extends CI_Model {
 		$query = $this->db->get('price_list');
 		return $query->result_array();
 	}
-	//выборка всех прайс-листов с внешним ключом id товара
-	public function select_price_product($id_product)
+	//выборка всех прайс-листов с конкретным id товара
+	public function select_price_product($product_id)
 	{
-		$sql = 'SELECT id_price, price, id_product, supplier FROM price_list, product WHERE price.id_product = product.id_product and id_product = ? ';
-		$query = $this->db->query($sql, array ($id_product));
+		$sql = 'SELECT price_list.id, price, product_id, supplier FROM price_list, product WHERE price_list.product_id = product.id and product_id = ?';
+		$query = $this->db->query($sql, array ($product_id));
 		return $query->result_array();
 	}
 	//добавление прайс-листа

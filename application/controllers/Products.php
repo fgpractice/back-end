@@ -12,6 +12,11 @@ class Products extends CI_Controller {
 		//отображение группы товара в выпадающем списке
 		$this->load->model('category');
 		$data['category'] = $this->category->select_category();
+		//загружаем модель пользователя
+		$this->load->model('user');
+		//отображение имени пользователя в навбаре
+		$data['data_user'] = $this->user->select_nav_user($this->session->userdata('id_user'));
+		$data['text_login'] = $data['data_user']['login'];
 		//добавление продукта
 		if($this->input->post('insert_product')){
 			//добавление переменной
