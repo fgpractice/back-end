@@ -57,6 +57,7 @@
 	<script src="<?=base_url()?>assets/vendor/datatables/datatables.min.js"></script>
 	<script src="<?=base_url()?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script src="<?=base_url()?>assets/js/datatables.js"></script>
+	<script src="<?=base_url()?>assets/js/create_order.js"></script>
 	<!-- /jQuery, Bootstrap и DataTables -->
 </body>
 <!-- /body -->

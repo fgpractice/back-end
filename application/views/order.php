@@ -7,11 +7,11 @@
 <!-- Начало контента страницы -->
 <div class="container-fluid">
 
-<?=form_open('orders/order')?>
+<?=form_open('orders/index')?>
 
 <!-- Заголовок страницы -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Управление заказами</h1>
+        <h1 class="h3 mb-0 text-gray-800">Оформление заказа</h1>
 		<?=form_submit('insert_order','Сделать заказ', 'class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"')?>		
         <!-- <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>Сделать заказ</button> -->
     </div>
@@ -44,9 +44,8 @@
 			echo '		<td>'.$item['description'].'</td>';
 			echo '		<td>'.$item['measure_unit'].'</td>';
 			echo '	<td>';
-			echo '		<button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#insertModal">';
-			echo '		<input type="hidden" name="id_product" value="'.$item['id'].'">
-						<i class="fas fa-fw fa-shopping-cart"></i>';
+			echo '		<button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm insert_order" value="'.$item['id'].'" data-toggle="modal" data-target="#insertModal" data-value="'.$item['id'].'">';
+			echo '		  <i class="fas fa-fw fa-shopping-cart"></i>';
 			echo '  	</button>';
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
 			echo '			<i class="fas fa-pen fa-sm"></i>';
@@ -64,9 +63,12 @@
   </div>
 </div>
 
+<?=form_close()?>
+
 </div>
 <!-- /.container-fluid -->
 
+<?=form_open('orders/order')?>
 <!-- Модальное окно добавления записи-->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -78,11 +80,17 @@
               	</button>
             </div>
             <div class="modal-body">
+              <div class="insertModal">
                     <div class="form-group">
                         <label for="insertId_price">Прайс:</label>
+                        <input type="hidden" value="" name="id_product" id="id_product">
 						            <select required id="insertId_price" name="id_price" class="form-control">
-
-						           </select>
+<?php
+				foreach ($price as $item){
+					  echo '<option value = "'.$item['id'].'">'.$item['price'].'</option>';
+				}
+?>	
+						            </select>
                     </div>
                     <div class="form-group">
                         <label for="insertTotal_count">Количество:</label>
@@ -93,6 +101,7 @@
                         <input id="insertTotal_amount" name="total_amount" class="form-control" type="text" disabled>
                     </div>
             </div>
+          </div>
             <div class="modal-footer">
 			  <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
 			  <?=form_submit('insert_order_product','Заказать', 'class="btn btn-primary"')?>
@@ -100,7 +109,7 @@
           </div>
         </div>
       </div>
-
+<?=form_close()?>
 
 <!-- Модальное окно изменение записи -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
@@ -113,7 +122,7 @@
               </button>
             </div>
             <div class="modal-body">
-				<div class="form-group">
+				      <div class="form-group">
                     <label for="editProduct">Товар:</label>
 					<select required id="editProduct" name="editId_product" class="form-control">
 <?php

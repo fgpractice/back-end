@@ -41,7 +41,7 @@
         </li>
         <!-- Пункт меню. Категории -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>categories/category">
+            <a class="nav-link" href="<?=base_url()?>categories/index">
             <i class="fas fa-fw fa-sitemap"></i>
             <span>Категории</span></a>
         </li>
@@ -59,7 +59,7 @@
         </li>
         <!-- Пункт меню. Заказы -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>orders/order">
+            <a class="nav-link" href="<?=base_url()?>orders/index">
             <i class="fas fa-fw fa-shopping-cart"></i>
             <span>Заказы</span></a>
         </li>

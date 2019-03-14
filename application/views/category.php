@@ -7,7 +7,7 @@
 <!-- Начало контента страницы -->
 <div class="container-fluid">
 
-<?=form_open('categories/category')?>
+<?=form_open('categories/index')?>
 
 <!-- Заголовок страницы -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -58,10 +58,11 @@
 	</div>
   </div>
 </div>
-
+<?=form_close()?>
 </div>
 <!-- /.container-fluid -->
 
+<?=form_open('categories/create')?>
 <!-- Модальное окно добавления торговой точки-->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -85,8 +86,9 @@
           </div>
         </div>
       </div>
+<?=form_close()?>
 
-
+<?=form_open('categories/update')?>
 <!-- Модальное окно изменение записи -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -110,7 +112,9 @@
           </div>
         </div>
       </div>
-  
+  <?=form_close()?>
+
+  <?=form_open('categories/delete')?>
     <!-- Модальное окно подтверждения удаления записи -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -129,7 +133,7 @@
           </div>
         </div>
       </div>
-
+<?=form_close()?>
 
 <?php
 	//подключение подвала

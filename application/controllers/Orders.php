@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Orders extends CI_Controller {
 
 	//заказ
-	public function order()
+	public function index()
 	{
 		//переменная id торговой точки				
 		$id_market = $this->input->post('id_market');
@@ -77,5 +77,31 @@ class Orders extends CI_Controller {
 			$data['order'] = $this->order->insert_order($user_id, $market_id, $date_order, $date_payment);
 		}
 		$this->load->view('order',$data);
+	}
+
+	public function create()
+	{
+		var_dump($_POST);
+		$this->load->model('price');
+		$data['price'] = $this->price->select_price_product($this->input->post('id_product'));
+		$insert_modal='
+		<div class="form-group">
+			<label for="insertId_price">Прайс:</label>
+						<select required id="insertId_price" name="id_price" class="form-control">';
+
+	foreach ($data['price'] as $item){
+		  $insert_modal .= '<option value = "'.$item['id'].'">'.$item['price'].'</option>';
+	}	
+					   $insert_modal .= '</select>
+		</div>
+		<div class="form-group">
+			<label for="insertTotal_count">Количество:</label>
+			<input id="insertTotal_count" name="total_count" class="form-control" type="number" placeholder="Введите кол-во" value="1">
+		</div>
+		<div class="form-group">
+			<label for="insertTotal_amount">Сумма:</label>
+			<input id="insertTotal_amount" name="total_amount" class="form-control" type="text" disabled>
+		</div>';
+	//echo $insert_modal;
 	}
 }

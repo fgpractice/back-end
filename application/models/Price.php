@@ -12,8 +12,9 @@ class Price extends CI_Model {
 	//выборка всех прайс-листов с конкретным id товара
 	public function select_price_product($product_id)
 	{
-		$sql = 'SELECT price_list.id, price, product_id, supplier FROM price_list, product WHERE price_list.product_id = product.id and product_id = ?';
+		$sql = 'SELECT price_list.id, price, product_id, supplier FROM price_list WHERE product_id = ?';
 		$query = $this->db->query($sql, array ($product_id));
+		var_dump($query);
 		return $query->result_array();
 	}
 	//добавление прайс-листа
