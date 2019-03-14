@@ -23,7 +23,7 @@
         </div>
         <!-- Пункт меню. Пользователи -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>users/registration">
+            <a class="nav-link" href="<?=base_url()?>users/index">
             <i class="fas fa-fw fa-user"></i>
             <span>Пользователи</span></a>
         </li>
@@ -35,7 +35,7 @@
         </div>
         <!-- Пункт меню. Торговые точки -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>markets/market">
+            <a class="nav-link" href="<?=base_url()?>markets/index">
             <i class="fas fa-fw fa-store"></i>
             <span>Торговые точки</span></a>
         </li>
@@ -47,13 +47,13 @@
         </li>
         <!-- Пункт меню. Прайс-листы -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>prices/price">
+            <a class="nav-link" href="<?=base_url()?>prices/index">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Прайс-листы</span></a>
         </li>
         <!-- Пункт меню. Товары -->
         <li class="nav-item">
-            <a class="nav-link" href="<?=base_url()?>products/product">
+            <a class="nav-link" href="<?=base_url()?>products/index">
             <i class="fas fa-fw fa-list"></i>
             <span>Товары</span></a>
         </li>
