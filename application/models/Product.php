@@ -32,4 +32,22 @@ class Product extends CI_Model {
 		$query = $this->db->get('product');
 		return $query->result_array();
 	}
+	//изменение записи товара
+	public function update_product($id_product, $category_id, $name_product, $description, $measure_unit, $photo)
+	{
+		$data = array(
+			'category_id' => $category_id,
+			'name_product' => $name_product,
+			'description' => $description,
+			'measure_unit' => $measure_unit,
+			'photo' => $photo,
+		);
+		$this->db->where('id', $id_product);
+		$this->db->update('product', $data);
+	}
+	//удаление записи товара
+	public function delete_product($id_product)
+	{
+		$this->db->delete('product', array('id' => $id_product));
+	}
 }

@@ -46,9 +46,9 @@
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
 			echo '			<i class="fas fa-pen fa-sm"></i>';
 			echo '  	</a>';
-			echo '  	<button type="button" id="'.$item['id'].'" class="deleteModal d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm data-toggle="modal" data-target="#deleteModal">';
+			echo '  	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteModal">';
 			echo '			<i class="fas fa-trash fa-sm"></i>';
-			echo '  	</button>';
+			echo '  	</a>';
 			echo '	</td>';
 			echo '</tr>';
 		}

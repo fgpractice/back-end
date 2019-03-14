@@ -14,7 +14,6 @@ class Price extends CI_Model {
 	{
 		$sql = 'SELECT price_list.id, price, product_id, supplier FROM price_list WHERE product_id = ?';
 		$query = $this->db->query($sql, array ($product_id));
-		var_dump($query);
 		return $query->result_array();
 	}
 	//добавление прайс-листа

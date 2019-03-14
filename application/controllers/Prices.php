@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Prices extends CI_Controller {
 
 	//прайс
-	public function price()
+	public function index()
 	{
 		//отображение данных в выпадающем меню
 		$this->load->model('product');
@@ -20,6 +20,13 @@ class Prices extends CI_Controller {
 		$data['text_login'] = $data['data_user']['login'];
 		//отображение прайса
 		$data['price'] = $this->price->select_price();
+		$this->load->view('price',$data);
+	}
+	//добавление прайса
+	public function insert()
+	{
+		//загрузка модели прайса
+		$this->load->model('price');		
 		//при нажатии на кнопку "Добавить" в модальном окне прайс-листа
 		if($this->input->post('insert_price'))
 		{
@@ -29,8 +36,16 @@ class Prices extends CI_Controller {
 			$supplier = $this->input->post('supplier');
 			//добавление прайс-листа
 			$data['price'] = $this->price->insert_price($price, $product_id, $supplier);
-			redirect('prices/price');
+			redirect('prices/index');
 		}
+	}
+	//изменение прайса
+	public function update()
+	{
+		//загрузка модели прайса
+		$this->load->model('price');
+		//переменная id прайса
+		$id_price = $this->input->post('id_price');
 		//изменение конкретного прайс-листа
 		if($this->input->post('update_price'))
 		{
@@ -40,14 +55,21 @@ class Prices extends CI_Controller {
 			$supplier = $this->input->post('editSupplier');
 			//изменение записи прайс-листа
 			$data['price'] = $this->price->update_price($id_price, $product_id, $price, $supplier);
-			redirect('prices/price');
+			redirect('prices/index');
 		}
+	}
+	//удаление прайса
+	public function delete()
+	{
+		//загрузка модели прайса
+		$this->load->model('price');
+		//переменная id прайса
+		$id_price = $this->input->post('id_price');
 		//удаление конкретного прайс-листа
 		if($this->input->post('delete_price'))
 		{
 			$data['price'] = $this->price->delete_price($id_price);
-			redirect('prices/price');
+			redirect('prices/index');
 		}
-		$this->load->view('price',$data);
 	}
 }

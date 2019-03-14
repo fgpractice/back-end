@@ -17,7 +17,7 @@
           </button>
 
           <!-- Форма поиска -->
-          <form method="post" action="order" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <form method="post" action="index" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <!-- Кнопка торговая точка -->
              <button type = "button" class = "btn btn-link" data-toggle = "modal" data-target = "#exampleModal">
@@ -25,7 +25,7 @@
               </button>
             </div>
           </form>
-          <form method="post" action="order">
+          <form method="post" action="index">
           <!-- Навигация -->
           <ul class="navbar-nav ml-auto">
              

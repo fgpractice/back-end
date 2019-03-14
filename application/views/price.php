@@ -7,7 +7,7 @@
 <!-- Начало контента страницы -->
 <div class="container-fluid">
 
-<?=form_open('prices/price')?>
+<?=form_open('prices/index')?>
 <!-- Заголовок страницы -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Управление прайс-листами</h1>
@@ -61,9 +61,11 @@
 	</div>
   </div>
 </div>
-
+<?=form_close()?>
 </div>
 <!-- /.container-fluid -->
+
+<?=form_open('prices/insert')?>
 
 <!-- Модальное окно добавления записи-->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertLabel" aria-hidden="true">
@@ -102,8 +104,9 @@
           </div>
         </div>
       </div>
+<?=form_close()?>
 
-
+<?=form_open('prices/update')?>
 <!-- Модальное окно изменение записи -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -142,7 +145,9 @@
           </div>
         </div>
       </div>
-  
+<?=form_close()?>
+
+<?=form_open('prices/delete')?>
     <!-- Модальное окно подтверждения удаления записи -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -161,6 +166,7 @@
           </div>
         </div>
       </div>
+<?=form_close()?>
 <?php
 	//подключение подвала
 	include 'temp/footer.php';

@@ -7,16 +7,16 @@
 <!-- Начало контента страницы -->
 <div class="container-fluid">
 
-<?=form_open('markets/market')?>
+<?=form_open('users/index')?>
 
 <!-- Заголовок страницы -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Управление торговыми точками</h1>
+  <h1 class="h3 mb-0 text-gray-800">Управление пользователями</h1>
 </div>
 
   <div class="form-row align-items-center">	
 	<div class="col-auto my-1">
-	  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#insertModal">Добавить торговую точку</a>
+	  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#insertModal">Добавить пользователя</a>
 	</div>
   </div>
 <hr>
@@ -24,7 +24,7 @@
 <!-- DataTales -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-	<h6 class="m-0 font-weight-bold text-primary">Список торговых точек</h6>
+	<h6 class="m-0 font-weight-bold text-primary">Список пользователей</h6>
   </div>
   <div class="card-body">
 	<div class="table-responsive">
@@ -32,28 +32,26 @@
 		<thead>
 		  <tr>
 			<th>№</th>
-			<th>№ пользователя</th>
-			<th>Тип</th>
-			<th>Название</th>
-			<th>Директор</th>
-			<th>Контакты</th>
-			<th>Адрес</th>
-			<th>Банковский реквизит</th>
+			<th>Логин</th>
+			<th>Пароль</th>
+			<th>Имя</th>
+			<th>E-mail</th>
+			<th>Телефон</th>
+			<th>IMEI</th>
 			<th>Редактирование</th>
 		  </tr>
 		</thead>
 		<tbody>
 <?php
-		foreach($market as $item){
+		foreach($user as $item){
 			echo '<tr>';
-			echo '	<td><input type="hidden" value="'.$item['id'].'" name="id_market" id="id_market">'.$item['id'].'</td>';
-			echo '	<td>'.$item['user_id'].'</td>';
-			echo '	<td>'.$item['type_market'].'</td>';
-			echo '	<td>'.$item['name_market'].'</td>';
-			echo '	<td>'.$item['name_owner'].'</td>';
-			echo '	<td>'.$item['contact'].'</td>';
-			echo '	<td>'.$item['address_market'].'</td>';
-			echo '	<td>'.$item['bank_info'].'</td>';
+			echo '	<td><input type="hidden" value="'.$item['id'].'" name="id_user" id="id_user">'.$item['id'].'</td>';
+			echo '	<td>'.$item['login'].'</td>';
+			echo '	<td>'.$item['password'].'</td>';
+			echo '	<td>'.$item['name_user'].'</td>';
+			echo '	<td>'.$item['email'].'</td>';
+			echo '	<td>'.$item['phone'].'</td>';
+			echo '	<td>'.$item['device'].'</td>';
 			echo '	<td>';
 			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
 			echo '			<i class="fas fa-pen fa-sm"></i>';
@@ -74,57 +72,53 @@
 </div>
 <!-- /.container-fluid -->
 
-<?=form_open('markets/insert')?>
+<?=form_open('users/insert')?>
 <!-- Модальное окно добавления записи-->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="insertLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-              	<h5 class="modal-title" id="exampleModalLabel">Добавление торговой точки</h5>
+              	<h5 class="modal-title" id="exampleModalLabel">Добавление пользователя</h5>
               	<button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 	<span aria-hidden="true">×</span>
               	</button>
             </div>
             <div class="modal-body">
                     <div class="form-group">
-						<label for="insertType">Тип:</label>
-						<select required id="insertType" name="type_market" class="form-control">
-								<option>Ларек</option>
-								<option>Супермаркет</option>
-								<option>Гипермаркет</option>
-						</select>	
+                        <label for="insertLogin">Логин:</label>
+                        <input required id="insertLogin" name="login" class="form-control" type="text" placeholder="Введите логин">
                     </div>
                     <div class="form-group">
-                        <label for="insertName_Market">Название:</label>
-                        <input id="insertName_Market" name="name_market" class="form-control" type="text" placeholder="Введите название торг. точки">
+                        <label for="insertPassword">Пароль:</label>
+                        <input id="insertPassword" name="password" class="form-control" type="password" placeholder="Введите пароль">
                     </div>
                     <div class="form-group">
-                        <label for="insertName_Owner">Директор:</label>
-                        <input id="insertName_Owner" name="name_owner" class="form-control" type="text" placeholder="Введите ФИО директора">
+                        <label for="insertName">Имя:</label>
+                        <input id="insertName" name="name_user" class="form-control" type="text" placeholder="Введите имя">
                     </div>
                     <div class="form-group">
-                        <label for="insertContact">Контакты:</label>
-                        <input id="insertContact" name="contact" class="form-control" type="text" placeholder="Введите контактные данные">
+                        <label for="insertEmail">Email:</label>
+                        <input id="insertEmail" name="email" class="form-control" type="email" placeholder="Введите Email">
                     </div>
                     <div class="form-group">
-                        <label for="insertAddress">Адрес:</label>
-                        <input id="insertAddress" name="address_market" class="form-control" type="text" placeholder="Введите адрес торг. точки">
+                        <label for="insertPhone">Телефон:</label>
+                        <input id="insertPhone" name="phone" class="form-control" type="tel" placeholder="Введите телефон">
                     </div>
                     <div class="form-group">
-                        <label for="insertBank">Банковский реквизит:</label>
-                        <input id="insertBank" name="bank_info" class="form-control" type="text" placeholder="Введите банковский реквизит">
+                        <label for="insertIMEI">IMEI:</label>
+                        <input id="insertIMEI" name="device" class="form-control" type="text" placeholder="Введите IMEI">
                     </div>   
             </div>
             <div class="modal-footer">
 			  <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
-			  <?=form_submit('insert_market','Добавить', 'class="btn btn-primary"')?>
+			  <?=form_submit('insert_user','Добавить', 'class="btn btn-primary"')?>
             </div>
           </div>
         </div>
       </div>
 <?=form_close()?>
 
-<?=form_open('markets/update')?>
+<?=form_open('users/update')?>
 <!-- Модальное окно изменение записи -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -136,38 +130,42 @@
               </button>
             </div>
             <div class="modal-body">
-					<div class="form-group">
-                        <label for="editName_Market">Название:</label>
-                        <input id="editName_Market" name="editName_market" class="form-control" type="text" placeholder="Введите название торг. точки">
+                    <div class="form-group">
+                        <label for="editLogin">Логин:</label>
+                        <input required id="editLogin" name="editLogin" class="form-control" type="text" placeholder="Введите логин">
                     </div>
                     <div class="form-group">
-                        <label for="editName_Owner">Директор:</label>
-                        <input id="editName_Owner" name="editName_owner" class="form-control" type="text" placeholder="Введите ФИО директора">
+                        <label for="editPassword">Пароль:</label>
+                        <input id="editPassword" name="editPassword" class="form-control" type="password" placeholder="Введите пароль">
                     </div>
                     <div class="form-group">
-                        <label for="editContact">Контакты:</label>
-                        <input id="editContact" name="editContact" class="form-control" type="text" placeholder="Введите контактные данные">
+                        <label for="editName">Имя:</label>
+                        <input id="editName" name="editName" class="form-control" type="text" placeholder="Введите имя">
                     </div>
                     <div class="form-group">
-                        <label for="editAddress">Адрес:</label>
-                        <input id="editAddress" name="editAddress_market" class="form-control" type="text" placeholder="Введите адрес торг. точки">
+                        <label for="editEmail">Email:</label>
+                        <input id="editEmail" name="editEmail" class="form-control" type="email" placeholder="Введите Email">
                     </div>
                     <div class="form-group">
-                        <label for="editBank">Банковский реквизит:</label>
-                        <input id="editBank" name="editBank_info" class="form-control" type="text" placeholder="Введите банковский реквизит">
-                    </div> 
+                        <label for="editPhone">Телефон:</label>
+                        <input id="editPhone" name="editPhone" class="form-control" type="tel" placeholder="Введите телефон">
+                    </div>
+                    <div class="form-group">
+                        <label for="editIMEI">IMEI:</label>
+                        <input id="editIMEI" name="editIMEI" class="form-control" type="text" placeholder="Введите IMEI">
+                    </div>
                     
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
-              <?=form_submit('update_market','Изменить', 'class="btn btn-primary"')?>
+              <?=form_submit('update_user','Изменить', 'class="btn btn-primary"')?>
             </div>
           </div>
         </div>
       </div>
-<?=form_close()?> 
+<?=form_close()?>
 
-<?=form_open('markets/delete')?>
+<?=form_open('users/delete')?>
     <!-- Модальное окно подтверждения удаления записи -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -181,7 +179,7 @@
             <div class="modal-body">Вы действительно хотите удалить эту запись?</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
-              <?=form_submit('delete_market','Удалить', 'class="btn btn-primary"')?>
+              <?=form_submit('delete_user','Удалить', 'class="btn btn-primary"')?>
             </div>
           </div>
         </div>

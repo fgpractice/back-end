@@ -18,6 +18,7 @@ class Categories extends CI_Controller {
 		//вывод данных
 		$this->load->view('category',$data);
 	}
+	//добавление категории
 	public function create()
 	{
 		//загрузка модели категории
@@ -31,6 +32,7 @@ class Categories extends CI_Controller {
 			redirect('categories/index');
 		}		
 	}
+	//изменение категории
 	public function update()
 	{
 		//загрузка модели категории
@@ -42,8 +44,8 @@ class Categories extends CI_Controller {
 			$data['category'] = $this->category->update_category($id_category, $name_category);
 			redirect('categories/index');
 		}
-		$this->load->view('category',$data);
 	}
+	//удаление категории
 	public function delete()
 	{
 		//загрузка модели категории
@@ -53,7 +55,6 @@ class Categories extends CI_Controller {
 		{
 			//переменная id категории
 			$id_category = $this->input->post('id_category');
-			var_dump($id_category);
 			$data['category'] = $this->category->delete_category($id_category);
 			redirect('categories/index');
 		}
