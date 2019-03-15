@@ -49,7 +49,6 @@ $(document).ready(function(){
         var total_count = document.getElementById('insertTotal_count').value;
         var total_amount = price * total_count;
         document.getElementById('insertTotal_amount').value = total_amount;
-        total_amount_a = document.getElementById('insertTotal_amount').value;
-        alert(total_amount_a);
+    //    total_amount_a = document.getElementById('insertTotal_amount').value;
 	}
 

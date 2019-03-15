@@ -11,6 +11,7 @@
 <!-- Заголовок страницы -->
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Оформление заказа</h1>
+        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?=base_url()?>sorder/index">Просмотр заказов</a>
 		<?=form_submit('insert_order','Сделать заказ', 'class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"')?>		
         <!-- <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>Сделать заказ</button> -->
     </div>
@@ -48,12 +49,12 @@
 			echo '		<button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm insert_order" value="'.$item['id'].'" data-toggle="modal" data-target="#insertModal">';
 			echo '		  <i class="fas fa-fw fa-shopping-cart"></i>';
 			echo '  	</button>';
-			echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
-			echo '			<i class="fas fa-pen fa-sm"></i>';
-			echo '  	</a>';
-			echo '  	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteModal">';
-			echo '			<i class="fas fa-trash fa-sm"></i>';
-			echo '  	</a>';
+			// echo '		<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#editModal">';
+			// echo '			<i class="fas fa-pen fa-sm"></i>';
+			// echo '  	</a>';
+			// echo '  	<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal" data-target="#deleteModal">';
+			// echo '			<i class="fas fa-trash fa-sm"></i>';
+			// echo '  	</a>';
 			echo '	</td>';
 			echo '</tr>';
 		}
@@ -99,21 +100,18 @@
                         <label for="insertTotal_amount">Сумма:</label>
                         <input id="insertTotal_amount" name="total_amount" class="form-control" type="text" value="0" disabled>
                     </div>
-            <!-- </div> -->
-          <!-- </div> -->
+            </div>
+          </div>
             <div class="modal-footer">
 			  <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
 			  <?=form_submit('insert_order_product','Заказать', 'class="btn btn-primary"')?>
             </div>
-          <!-- div modal-body -->
-          </div>
-          <!-- /div -->
           </div>
         </div>
       </div>
 <?=form_close()?>
 
-<?=form_open('orders/update')?>
+<?=form_open('orders/update')?> 
 <!-- Модальное окно изменение записи -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -173,7 +171,7 @@
           </div>
         </div>
 	  </div>
-<?=form_close()?>
+<?=form_close()?> -->
 
 <?php
 	//подключение подвала

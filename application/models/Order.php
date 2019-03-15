@@ -15,7 +15,7 @@ class Order extends CI_Model {
     //выборка всех заказов
     public function select_orders()
     {
-        $query = $this->db->get('order');
+        $query = $this->db->get('orders');
         return $query->result_array();
     }
     //удаление одной записи заказа

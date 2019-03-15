@@ -85,13 +85,7 @@ class Orders extends CI_Controller {
 		<div class="form-group">
 			<label for="insertTotal_amount">Сумма:</label>
 			<input id="insertTotal_amount" name="total_amount" class="form-control" type="text" value="" disabled>
-		</div>
-
-            <div class="modal-footer">
-			  <button class="btn btn-secondary" type="button" data-dismiss="modal">Отмена</button>
-			  <input type="submit" name="insert_order_product" value="Заказать" class="btn btn-primary">
-			</div>
-			</div>';
+		</div>';
 	echo $insert_modal;
 	}
 	//создание заказа
