@@ -52,7 +52,7 @@ class Home extends CI_Controller {
 	}
 	//функция выхода
 	public function out(){
-		$unset_usersdata = array('id_user', 'role', 'id_market', 'id_order');
+		$unset_usersdata = array('id_user', 'role', 'id_market', 'id_order', 'id_order');
 		$this->session->unset_userdata($unset_usersdata);
 		redirect('');
 	}

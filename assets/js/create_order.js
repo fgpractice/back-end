@@ -1,31 +1,55 @@
 $(document).ready(function(){	
-	
-    $('.insert_order').click(function () {   
+	//передача id товара в данные выпадающего меню price
+    $('.insert_order').click(function () { 
 
-        var product_id = $(this).val();
+        var id_product = $(this).val();
         // alert(id_product);
         // передать product_id
         $.ajax({
             type: 'POST',
-            url: 'orders/create',
+            url: 'modal',
             data: ({
-                product_id : product_id
+                id_product : id_product
             }),
             dataType: 'html',
             success: function (result) {
                 // alert(result);
-                $('.insertModal').empty().append(result);
+                //$('.insertModal').empty().append(result);
+                document.getElementById("insertValue").innerHTML=result;
             }
         })
-
+        
     })
+ 
+    // $('.rachet').click(function () { 
 
-    // $('#insertModal').on('show.bs.modal', function (event) {
-    //     var button = $(event.relatedTarget) // Button that triggered the modal
-    //     var value = button.data('value') // Extract info from data-* attributes
-    //     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    //     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    //     var modal = $(this)
-    //     modal.find('#id_product').val(value)
-    //   })
+    //     var total_count = document.getElementById("insertTotal_count").value;
+    //     alert(total_count);
+    //     // передать product_id
+    //     // $.ajax({
+    //     //     type: 'POST',
+    //     //     url: 'podchet',
+    //     //     data: ({
+    //     //         total_count : total_count
+    //     //     }),
+    //     //     dataType: 'html',
+    //     //     success: function (result) {
+    //     //         alert(result);
+    //     //         $('.insertModal').empty().append(result);
+    //     //         document.getElementById("insertTotal_count").innerHTML=result;
+    //     //     }
+    //     // })
+    // })
 });
+
+    // расчет суммы
+    function rachet_sum(){
+        var n = document.getElementById("insertId_price").options.selectedIndex;
+        var price = document.getElementById('insertId_price').options[n].text;
+        var total_count = document.getElementById('insertTotal_count').value;
+        var total_amount = price * total_count;
+        document.getElementById('insertTotal_amount').value = total_amount;
+        total_amount_a = document.getElementById('insertTotal_amount').value;
+        alert(total_amount_a);
+	}
+
